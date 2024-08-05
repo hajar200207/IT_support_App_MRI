@@ -11,7 +11,9 @@ import lombok.Setter;
 @Getter @Setter @Entity
 public class User extends Personne {
     private String fonction;
-
+    public User() {
+        this.setRole("ROLE_USER");
+    }
     @OneToMany(mappedBy = "user")
     private List<Ticket> tickets;
 }
