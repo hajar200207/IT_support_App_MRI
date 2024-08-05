@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/users")
@@ -33,15 +33,28 @@ public class PersonneController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody Personne loginRequest) {
-        Optional<Personne> user = personneService.findByEmail(loginRequest.getEmail());
-        if (user.isPresent() && passwordEncoder.matches(loginRequest.getMotDePasse(), user.get().getMotDePasse())) {
-            String token = jwtAuth.generateToken(user.get().getEmail(), user.get().getRole()); // Include role
-            return ResponseEntity.ok(token);
-        } else {
-            return ResponseEntity.status(401).body("Invalid credentials");
+    public ResponseEntity<?> loginUser(@RequestBody Personne userRequest) {
+        Optional<Personne> optionalUser = personneService.findByEmail(userRequest.getEmail());
+
+        if (optionalUser.isPresent()) {
+            Personne foundUser = optionalUser.get();
+            if (passwordEncoder.matches(userRequest.getMotDePasse(), foundUser.getMotDePasse())) {
+                String role = foundUser.getRole();
+
+                String token = jwtAuth.generateToken(foundUser.getEmail(), role);
+
+                Map<String, String> response = new HashMap<>();
+                response.put("token", token);
+                response.put("role", role);
+
+                return ResponseEntity.ok(response);
+            }
         }
+
+        return ResponseEntity.status(401).body("Invalid email or password");
     }
+
+
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable Long id) {
