@@ -2,6 +2,7 @@ package com.itsolutions.equipment_management.services;
 
 import com.itsolutions.equipment_management.models.Admin;
 import com.itsolutions.equipment_management.models.Personne;
+import com.itsolutions.equipment_management.models.Technicien;
 import com.itsolutions.equipment_management.repositories.PersonneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,10 +22,23 @@ public class PersonneService {
 
     public Personne registerPersonne(Personne personne) {
         personne.setMotDePasse(passwordEncoder.encode(personne.getMotDePasse()));
+
+        Optional<Personne> existingPersonnes = personneRepository.findByEmail(personne.getEmail());
+        if (existingPersonnes.isPresent()) {
+            throw new RuntimeException("Email already registered");
+        }
+
+        if (personne instanceof Technicien) {
+            Technicien technicien = (Technicien) personne;
+            technicien.setRole("ROLE_TECHNICIEN");
+            return personneRepository.save(technicien);
+        }
+
+
         return personneRepository.save(personne);
     }
 
-    public Optional<Personne> findByEmail(String email) {
+        public Optional<Personne> findByEmail(String email) {
         return personneRepository.findByEmail(email);
     }
 

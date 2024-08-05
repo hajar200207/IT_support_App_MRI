@@ -1,5 +1,6 @@
 package com.itsolutions.equipment_management.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -15,6 +16,7 @@ public class Technicien extends Personne {
         return "ROLE_TECHNICIEN";
     }
     public Technicien() {
+        super();
         this.setRole("ROLE_TECHNICIEN");
     }
 

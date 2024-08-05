@@ -15,7 +15,8 @@ import java.util.Collections;
 @Inheritance(strategy = InheritanceType.JOINED)
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter @Setter @Entity
+@Getter @Setter
+@Entity
 @Table(name = "Personne")
 public class Personne implements UserDetails {
 
@@ -25,7 +26,10 @@ public class Personne implements UserDetails {
 
     private String nom;
     private String prenom;
+
+    @Column(unique = true, nullable = false)
     private String email;
+    @Column(unique = true, nullable = false)
     private String motDePasse;
     private String role;
 
@@ -64,7 +68,4 @@ public class Personne implements UserDetails {
         return true;
     }
 
-    public String getRole() {
-        return null;
-    }
 }

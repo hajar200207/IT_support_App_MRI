@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Collections;
-import java.util.List;
 
 @Component
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
