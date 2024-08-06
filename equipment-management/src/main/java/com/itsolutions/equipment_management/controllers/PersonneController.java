@@ -30,7 +30,6 @@ public class PersonneController {
             return ResponseEntity.status(400).body("Email already registered");
         }
 
-        // Ne pas encoder le mot de passe ici
         Personne newUser = personneService.registerPersonne(userRequest);
         return ResponseEntity.ok("User registered successfully");
     }

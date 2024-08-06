@@ -4,6 +4,8 @@ import com.itsolutions.equipment_management.models.Admin;
 import com.itsolutions.equipment_management.models.Personne;
 import com.itsolutions.equipment_management.models.Technicien;
 import com.itsolutions.equipment_management.repositories.PersonneRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,23 +21,24 @@ public class PersonneService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-
+    private static final Logger logger = LoggerFactory.getLogger(PersonneService.class);
     public Personne registerPersonne(Personne personne) {
+        logger.info("Registering new personne: {}", personne.getEmail());
+        logger.info("Personne type: {}", personne.getClass().getSimpleName());
+
         personne.setMotDePasse(passwordEncoder.encode(personne.getMotDePasse()));
 
-        Optional<Personne> existingPersonnes = personneRepository.findByEmail(personne.getEmail());
-        if (existingPersonnes.isPresent()) {
-            throw new RuntimeException("Email already registered");
-        }
-
         if (personne instanceof Technicien) {
+            logger.info("Registering a Technicien");
             Technicien technicien = (Technicien) personne;
             technicien.setRole("ROLE_TECHNICIEN");
-            return personneRepository.save(technicien);
+            logger.info("Technicien specialite: {}", technicien.getSpecialite());
         }
 
+        Personne savedPersonne = personneRepository.save(personne);
+        logger.info("Personne saved with ID: {}", savedPersonne.getId());
 
-        return personneRepository.save(personne);
+        return savedPersonne;
     }
 
         public Optional<Personne> findByEmail(String email) {
