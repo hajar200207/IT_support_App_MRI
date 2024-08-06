@@ -24,4 +24,20 @@ public class PanneController {
     public ResponseEntity<List<Panne>> getPannesByEquipmentId(@PathVariable Long equipmentId) {
         return ResponseEntity.ok(panneService.getPannesByEquipmentId(equipmentId));
     }
+
+    @GetMapping("/")
+    public ResponseEntity<List<Panne>> getAllPannes() {
+        return ResponseEntity.ok(panneService.getAllPannes());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Panne> updatePanne(@PathVariable Long id, @RequestBody Panne panneDetails) {
+        return ResponseEntity.ok(panneService.updatePanne(id, panneDetails));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletePanne(@PathVariable Long id) {
+        panneService.deletePanne(id);
+        return ResponseEntity.ok("Panne deleted successfully");
+    }
 }
