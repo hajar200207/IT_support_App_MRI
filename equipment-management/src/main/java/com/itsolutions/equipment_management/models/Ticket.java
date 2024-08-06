@@ -20,7 +20,9 @@ public class Ticket {
     private Long id;
     private String description;
     private LocalDateTime dateCreation;
-
+    @ManyToOne
+    @JoinColumn(name = "technicien_id")
+    private Technicien technicien;
     @Enumerated(EnumType.STRING)
     private EtatTicket etatTicket;
 

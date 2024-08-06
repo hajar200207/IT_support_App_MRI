@@ -13,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @Inheritance(strategy = InheritanceType.JOINED)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
@@ -40,6 +42,9 @@ public  abstract  class Personne implements UserDetails {
     @Column(unique = true, nullable = false)
     private String motDePasse;
     private String role;
+    @Column(name = "username", unique = true, nullable = false)
+    private String username;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -75,5 +80,10 @@ public  abstract  class Personne implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<String> roles = new HashSet<>();
 
+    public boolean hasRole(String role) {
+        return roles.contains(role);
+    }
 }
