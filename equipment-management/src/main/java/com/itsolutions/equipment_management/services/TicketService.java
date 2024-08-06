@@ -6,6 +6,7 @@ import com.itsolutions.equipment_management.repositories.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -15,8 +16,10 @@ public class TicketService {
     private TicketRepository ticketRepository;
 
     public Ticket createTicket(Ticket ticket) {
+        ticket.setDateCreation(new Date());
         return ticketRepository.save(ticket);
     }
+
 
     public List<Ticket> getTicketsByUserId(Long userId) {
         return ticketRepository.findByUserId(userId);

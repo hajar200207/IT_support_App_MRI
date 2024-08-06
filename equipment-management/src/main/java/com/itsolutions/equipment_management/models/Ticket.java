@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 
 @Data
@@ -19,7 +20,11 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
-    private LocalDateTime dateCreation;
+    private Date dateCreation;
+    @PrePersist
+    protected void onCreate() {
+        this.dateCreation = new Date();
+    }
     @ManyToOne
     @JoinColumn(name = "technicien_id")
     private Technicien technicien;
@@ -33,7 +38,9 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "equipment_id")
     private Equipment equipment;
-
+    @ManyToOne
+    @JoinColumn(name = "panne_id")
+    private Panne panne;
 
 }
 
