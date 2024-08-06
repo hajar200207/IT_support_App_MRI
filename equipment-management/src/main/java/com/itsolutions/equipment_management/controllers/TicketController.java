@@ -5,9 +5,11 @@ import com.itsolutions.equipment_management.models.Ticket;
 import com.itsolutions.equipment_management.services.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/tickets")
@@ -31,9 +33,16 @@ public class TicketController {
         return ResponseEntity.ok(ticketService.getTicketsByTechnicienId(technicienId));
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<String> updateTicketStatus(@PathVariable Long id, @RequestBody EtatTicket etatTicket) {
-        ticketService.updateTicketStatus(id, etatTicket);
+    @PreAuthorize("hasRole('TECHNICIEN')")
+    @PutMapping("/update-status/{technicienId}/{ticketId}")
+    public ResponseEntity<String> updateTicketStatus(
+            @PathVariable Long technicienId,
+            @PathVariable Long ticketId,
+            @RequestBody Map<String, String> requestBody) {
+        String etatTicketStr = requestBody.get("etatTicket");
+        EtatTicket etatTicket = EtatTicket.valueOf(etatTicketStr);
+        ticketService.updateTicketStatus(ticketId, etatTicket);
         return ResponseEntity.ok("Ticket status updated successfully");
     }
+
 }
