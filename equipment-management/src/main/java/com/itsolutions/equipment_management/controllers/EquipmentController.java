@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+//terminer test gestion equipment
 @RestController
 @RequestMapping("/api/equipment")
 public class EquipmentController {
