@@ -11,10 +11,10 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor @Entity
+@AllArgsConstructor
+@Entity
 @Table(name = "equipment")
 public class Equipment {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,10 +25,11 @@ public class Equipment {
     private EtatEquipement etatEquipement;
 
     @OneToMany(mappedBy = "equipment")
-    private List<Panne> pannes;
+    private List<PanneEquipment> panneEquipments;
+//
+//    @OneToMany(mappedBy = "equipment")
+//    private List<Ticket> tickets;
 
-    @OneToMany(mappedBy = "equipment")
-    private List<Ticket> tickets;
 
     public void setId(Long id) {
         this.id = id;

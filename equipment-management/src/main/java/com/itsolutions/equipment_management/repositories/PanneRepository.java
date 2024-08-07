@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface PanneRepository extends JpaRepository<Panne, Long> {
     List<Panne> findByEquipmentId(Long equipmentId);
+
 }

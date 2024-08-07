@@ -35,9 +35,9 @@ public class Ticket {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "equipment_id")
-    private Equipment equipment;
+//    @ManyToOne
+//    @JoinColumn(name = "equipment_id")
+//    private Equipment equipment;
     @ManyToOne
     @JoinColumn(name = "panne_id")
     private Panne panne;

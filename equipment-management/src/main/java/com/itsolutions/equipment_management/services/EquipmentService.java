@@ -32,4 +32,8 @@ public class EquipmentService {
     public List<Equipment> getAllEquipments() {
         return equipmentRepository.findAll();
     }
+
+    public Equipment getEquipmentById(Long id) {
+        return equipmentRepository.findById(id).orElseThrow(() -> new RuntimeException("Equipment not found"));
+    }
 }
