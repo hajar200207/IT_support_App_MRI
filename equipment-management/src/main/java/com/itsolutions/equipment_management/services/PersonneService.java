@@ -3,7 +3,9 @@ package com.itsolutions.equipment_management.services;
 import com.itsolutions.equipment_management.models.Admin;
 import com.itsolutions.equipment_management.models.Personne;
 import com.itsolutions.equipment_management.models.Technicien;
+import com.itsolutions.equipment_management.models.User;
 import com.itsolutions.equipment_management.repositories.PersonneRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,4 +67,35 @@ public class PersonneService {
             personneRepository.save(admin);
         }
     }
+    public Optional<Personne> findById(Long id) {
+        return personneRepository.findById(id);
+    }
+
+    public Personne updatePersonne(Long id, Personne updatedPersonne) {
+        Optional<Personne> optionalPersonne = findById(id);
+        if (optionalPersonne.isPresent()) {
+            Personne existingPersonne = optionalPersonne.get();
+
+            // Update fields
+            existingPersonne.setNom(updatedPersonne.getNom());
+            existingPersonne.setPrenom(updatedPersonne.getPrenom());
+            existingPersonne.setEmail(updatedPersonne.getEmail());
+            if (updatedPersonne.getMotDePasse() != null) {
+                existingPersonne.setMotDePasse(updatedPersonne.getMotDePasse()); // Encode password if necessary
+            }
+
+            // Specific updates for subclasses (User, Technicien, Admin)
+            if (existingPersonne instanceof User && updatedPersonne instanceof User) {
+                ((User) existingPersonne).setFonction(((User) updatedPersonne).getFonction());
+            } else if (existingPersonne instanceof Technicien && updatedPersonne instanceof Technicien) {
+                ((Technicien) existingPersonne).setSpecialite(((Technicien) updatedPersonne).getSpecialite());
+            } else if (existingPersonne instanceof Admin && updatedPersonne instanceof Admin) {
+                ((Admin) existingPersonne).setDepartement(((Admin) updatedPersonne).getDepartement());
+            }
+
+            return personneRepository.save(existingPersonne);
+        }
+        throw new EntityNotFoundException("Personne not found with id: " + id);
+    }
+
 }

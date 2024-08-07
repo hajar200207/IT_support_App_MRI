@@ -3,8 +3,11 @@ package com.itsolutions.equipment_management.controllers;
 import com.itsolutions.equipment_management.models.Personne;
 import com.itsolutions.equipment_management.security.JwtAuth;
 import com.itsolutions.equipment_management.services.PersonneService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,8 +63,32 @@ public class PersonneController {
         }
         return ResponseEntity.status(401).body("Invalid email or password");
     }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updatePersonne(@PathVariable Long id, @RequestBody Personne updatedPersonne) {
+        try {
+            Personne updated = personneService.updatePersonne(id, updatedPersonne);
+            return ResponseEntity.ok("User updated successfully");
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(404).body("User not found");
+        }
+    }
+    @GetMapping("/profile")
+    public ResponseEntity<?> getUserProfile() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userEmail;
+        if (principal instanceof UserDetails) {
+            userEmail = ((UserDetails) principal).getUsername();
+        } else {
+            userEmail = principal.toString();
+        }
 
-
+        Optional<Personne> optionalPersonne = personneService.findByEmail(userEmail);
+        if (optionalPersonne.isPresent()) {
+            return ResponseEntity.ok(optionalPersonne.get());
+        } else {
+            return ResponseEntity.status(404).body("User not found");
+        }
+    }
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable Long id) {
         personneService.deletePersonne(id);
