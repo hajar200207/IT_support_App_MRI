@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+
 //terminer test gestion equipment
 @RestController
 @RequestMapping("/api/equipment")
@@ -34,5 +36,13 @@ public class EquipmentController {
     @GetMapping("/all")
     public ResponseEntity<List<Equipment>> getAllEquipments() {
         return ResponseEntity.ok(equipmentService.getAllEquipments());
+    }
+    @GetMapping("/find-by-nom/{nom}")
+    public ResponseEntity<List<Equipment>> getEquipmentByNom(@PathVariable String nom) {
+        List<Equipment> equipmentList = equipmentService.findByNom(nom);
+        if (equipmentList.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(equipmentList);
     }
 }

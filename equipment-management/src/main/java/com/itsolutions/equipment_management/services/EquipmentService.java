@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EquipmentService {
@@ -16,7 +17,9 @@ public class EquipmentService {
     public Equipment addEquipment(Equipment equipment) {
         return equipmentRepository.save(equipment);
     }
-
+    public List<Equipment> findByNom(String nom) {
+        return equipmentRepository.findByNom(nom);
+    }
     public Equipment updateEquipment(Long id, Equipment equipmentDetails) {
         Equipment equipment = equipmentRepository.findById(id).orElseThrow();
         equipment.setNom(equipmentDetails.getNom());
@@ -36,4 +39,5 @@ public class EquipmentService {
     public Equipment getEquipmentById(Long id) {
         return equipmentRepository.findById(id).orElseThrow(() -> new RuntimeException("Equipment not found"));
     }
+
 }
