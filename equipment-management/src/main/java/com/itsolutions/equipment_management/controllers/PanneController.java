@@ -1,5 +1,6 @@
 package com.itsolutions.equipment_management.controllers;
 
+import com.itsolutions.equipment_management.models.EtatPanne;
 import com.itsolutions.equipment_management.models.Panne;
 import com.itsolutions.equipment_management.services.PanneService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,21 @@ public class PanneController {
     public ResponseEntity<String> deletePanne(@PathVariable Long id) {
         panneService.deletePanne(id);
         return ResponseEntity.ok("Panne deleted successfully");
+    }
+    @GetMapping("/search")
+    public ResponseEntity<List<Panne>> searchPannesByDescription(@RequestParam String keyword) {
+        List<Panne> pannes = panneService.searchPannesByDescription(keyword);
+        if (pannes.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(pannes);
+    }
+    @GetMapping("/search/etat")
+    public ResponseEntity<List<Panne>> searchPannesByEtat(@RequestParam EtatPanne etatPanne) {
+        List<Panne> pannes = panneService.searchPannesByEtat(etatPanne);
+        if (pannes.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(pannes);
     }
 }

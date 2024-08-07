@@ -5,6 +5,7 @@ import com.itsolutions.equipment_management.repositories.PanneEquipmentRepositor
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,5 +43,12 @@ public class PanneEquipmentService {
     // Delete a PanneEquipment record
     public void deletePanneEquipment(Long id) {
         panneEquipmentRepository.deleteById(id);
+    }
+    public List<PanneEquipment> getPannesByEquipmentId(Long equipmentId) {
+        return panneEquipmentRepository.findByEquipmentId(equipmentId);
+    }
+
+    public List<PanneEquipment> getPannesByDateRange(LocalDateTime startDate, LocalDateTime endDate) {
+        return panneEquipmentRepository.findByDateOfLinkBetween(startDate, endDate);
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,5 +57,24 @@ public class PanneEquipmentController {
     public ResponseEntity<Void> deletePanneEquipment(@PathVariable Long id) {
         panneEquipmentService.deletePanneEquipment(id);
         return ResponseEntity.noContent().build();
+    }
+    @GetMapping("/search/by-equipment")
+    public ResponseEntity<List<PanneEquipment>> getPannesByEquipmentId(@RequestParam Long equipmentId) {
+        List<PanneEquipment> pannes = panneEquipmentService.getPannesByEquipmentId(equipmentId);
+        if (pannes.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(pannes);
+    }
+
+    @GetMapping("/search/by-date")
+    public ResponseEntity<List<PanneEquipment>> getPannesByDateRange(
+            @RequestParam("startDate") LocalDateTime startDate,
+            @RequestParam("endDate") LocalDateTime endDate) {
+        List<PanneEquipment> pannes = panneEquipmentService.getPannesByDateRange(startDate, endDate);
+        if (pannes.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(pannes);
     }
 }

@@ -1,5 +1,6 @@
 package com.itsolutions.equipment_management.services;
 
+import com.itsolutions.equipment_management.models.EtatPanne;
 import com.itsolutions.equipment_management.models.Panne;
 import com.itsolutions.equipment_management.repositories.PanneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,11 @@ public class PanneService {
         } else {
             throw new RuntimeException("Panne not found with id: " + id);
         }
+    }
+    public List<Panne> searchPannesByDescription(String keyword) {
+        return panneRepository.findByDescriptionContainingIgnoreCase(keyword);
+    }
+    public List<Panne> searchPannesByEtat(EtatPanne etatPanne) {
+        return panneRepository.findByEtatPanne(etatPanne);
     }
 }
