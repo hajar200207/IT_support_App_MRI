@@ -44,5 +44,10 @@ public class TicketController {
         ticketService.updateTicketStatus(ticketId, etatTicket);
         return ResponseEntity.ok("Ticket status updated successfully");
     }
+    @PutMapping("/assign/{ticketId}")
+    public ResponseEntity<Ticket> assignTicket(@PathVariable Long ticketId, @RequestParam Long technicienId) {
+        Ticket assignedTicket = ticketService.assignTicket(ticketId, technicienId);
+        return ResponseEntity.ok(assignedTicket);
+    }
 
 }
