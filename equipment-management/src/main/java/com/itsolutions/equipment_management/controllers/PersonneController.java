@@ -1,6 +1,7 @@
 package com.itsolutions.equipment_management.controllers;
 
 import com.itsolutions.equipment_management.models.Personne;
+import com.itsolutions.equipment_management.models.User;
 import com.itsolutions.equipment_management.security.JwtAuth;
 import com.itsolutions.equipment_management.services.PersonneService;
 import jakarta.persistence.EntityNotFoundException;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 @RequestMapping("/api/users")
 public class PersonneController {
@@ -27,14 +28,14 @@ public class PersonneController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@RequestBody Personne userRequest) {
+    public void registerUser(@RequestBody Personne userRequest) {
         Optional<Personne> existingUser = personneService.findByEmail(userRequest.getEmail());
         if (existingUser.isPresent()) {
-            return ResponseEntity.status(400).body("Email already registered");
+            ResponseEntity.status(400).body("Email already registered");
         }
 
         Personne newUser = personneService.registerPersonne(userRequest);
-        return ResponseEntity.ok("User registered successfully");
+         ResponseEntity.ok("User registered successfully");
     }
 
     @PostMapping("/login")
@@ -94,4 +95,5 @@ public class PersonneController {
         personneService.deletePersonne(id);
         return ResponseEntity.ok("User deleted successfully");
     }
+
 }

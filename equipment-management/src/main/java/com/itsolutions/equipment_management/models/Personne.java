@@ -86,4 +86,5 @@ public  abstract  class Personne implements UserDetails {
     public boolean hasRole(String role) {
         return roles.contains(role);
     }
+
 }

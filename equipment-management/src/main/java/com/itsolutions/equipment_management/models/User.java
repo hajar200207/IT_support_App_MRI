@@ -1,5 +1,6 @@
 package com.itsolutions.equipment_management.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -14,6 +15,7 @@ public class User extends Personne {
     private String fonction;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Ticket> tickets;
 
     @Override
