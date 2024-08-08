@@ -1,0 +1,41 @@
+<div class="registration-container">
+  <form [formGroup]="registreForm" (ngSubmit)="register()">
+    <div>
+      <label for="role">Role:</label>
+      <select id="role" formControlName="role" required>
+        <option value="" disabled>Select Role</option>
+        <option *ngFor="let role of Roles" [value]="role">{{ role }}</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="email">Email:</label>
+      <input id="email" type="email" formControlName="email" required>
+    </div>
+
+    <div>
+      <label for="password">Password:</label>
+      <input id="password" type="password" formControlName="motDePasse" required>
+    </div>
+    <div>
+      <label for="username">username:</label>
+      <input id="username" type="text" formControlName="username" required>
+    </div>
+
+    <div *ngIf="registreForm.get('role')?.value === 'user'">
+      <label for="fonction">Fonction:</label>
+      <input id="fonction" type="text" formControlName="fonction">
+    </div>
+
+    <div *ngIf="registreForm.get('role')?.value === 'technicien'">
+      <label for="specialite">Specialité:</label>
+      <input id="specialite" type="text" formControlName="specialite">
+    </div>
+    <div>
+
+      <input id="type" type="hidden" formControlName="type">
+    </div>
+
+    <button type="submit" [disabled]="!registreForm.valid">Register</button>
+  </form>
+</div>
