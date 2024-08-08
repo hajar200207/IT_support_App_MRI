@@ -3,4 +3,5 @@ export interface Personne {
   email: string;
   motDePasse: string;
   role?: string;
+  type: string;
 }

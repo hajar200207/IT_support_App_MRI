@@ -39,14 +39,16 @@ export class PersonneService {
     }
   }
 
-  login(email: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, { email, motDePasse: password }).pipe(
+  login(loginData: { email: string; motDePasse: string; type: string }): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/login`, loginData).pipe(
       catchError(error => {
         console.error('Login error', error);
         return throwError(error);
       })
     );
   }
+
+
 
   register(user: Personne): Observable<any> {
     console.log("ser"+user.role);console.log("ser"+user.email);console.log("ser"+user.motDePasse)
