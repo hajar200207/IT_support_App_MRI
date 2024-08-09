@@ -7,13 +7,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "PanneEquipment")
+@Table(name = "panne_equipment")
 public class PanneEquipment {
 
     @Id
@@ -24,10 +25,14 @@ public class PanneEquipment {
     @JoinColumn(name = "panne_id")
     private Panne panne;
 
-    @ManyToOne
-    @JoinColumn(name = "equipment_id")
-    private Equipment equipment;
+    @ManyToMany
+    @JoinTable(
+            name = "panne_equipment",
+            joinColumns = @JoinColumn(name = "panne_id"),
+            inverseJoinColumns = @JoinColumn(name = "equipment_id")
+    )
+    private Set<Equipment> equipments;
 
     private LocalDateTime dateOfLink;
-
 }
+

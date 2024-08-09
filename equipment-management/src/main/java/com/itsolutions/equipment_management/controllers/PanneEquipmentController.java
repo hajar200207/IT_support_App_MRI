@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/panne-equipment")
@@ -17,64 +15,29 @@ public class PanneEquipmentController {
     @Autowired
     private PanneEquipmentService panneEquipmentService;
 
-    // Create a new PanneEquipment record
-    @PostMapping
-    public ResponseEntity<PanneEquipment> createPanneEquipment(@RequestBody PanneEquipment panneEquipment) {
-        PanneEquipment createdPanneEquipment = panneEquipmentService.savePanneEquipment(panneEquipment);
-        return ResponseEntity.ok(createdPanneEquipment);
-    }
-
-    // Get all PanneEquipment records
     @GetMapping
-    public ResponseEntity<List<PanneEquipment>> getAllPanneEquipments() {
-        List<PanneEquipment> panneEquipments = panneEquipmentService.getAllPanneEquipments();
-        return ResponseEntity.ok(panneEquipments);
+    public List<PanneEquipment> getAllPanneEquipments() {
+        return panneEquipmentService.getAllPanneEquipments();
     }
 
-    // Get PanneEquipment history by Panne ID
-    @GetMapping("/panne/{panneId}")
-    public ResponseEntity<List<PanneEquipment>> getPanneHistory(@PathVariable Long panneId) {
-        List<PanneEquipment> panneHistory = panneEquipmentService.getPanneHistory(panneId);
-        return ResponseEntity.ok(panneHistory);
-    }
-
-    // Get PanneEquipment history by Equipment ID
-    @GetMapping("/equipment/{equipmentId}")
-    public ResponseEntity<List<PanneEquipment>> getEquipmentHistory(@PathVariable Long equipmentId) {
-        List<PanneEquipment> equipmentHistory = panneEquipmentService.getEquipmentHistory(equipmentId);
-        return ResponseEntity.ok(equipmentHistory);
-    }
-
-    // Get a specific PanneEquipment record by its ID
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<PanneEquipment>> getPanneEquipmentById(@PathVariable Long id) {
-        Optional<PanneEquipment> panneEquipment = panneEquipmentService.getPanneEquipmentById(id);
-        return ResponseEntity.ok(panneEquipment);
+    public ResponseEntity<PanneEquipment> getPanneEquipmentById(@PathVariable Long id) {
+        PanneEquipment panneEquipment = panneEquipmentService.getPanneEquipmentById(id);
+        if (panneEquipment != null) {
+            return ResponseEntity.ok(panneEquipment);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    // Delete a PanneEquipment record
+    @PostMapping
+    public PanneEquipment createPanneEquipment(@RequestBody PanneEquipment panneEquipment) {
+        return panneEquipmentService.savePanneEquipment(panneEquipment);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePanneEquipment(@PathVariable Long id) {
         panneEquipmentService.deletePanneEquipment(id);
         return ResponseEntity.noContent().build();
-    }
-    @GetMapping("/search/by-equipment")
-    public ResponseEntity<List<PanneEquipment>> getPannesByEquipmentId(@RequestParam Long equipmentId) {
-        List<PanneEquipment> pannes = panneEquipmentService.getPannesByEquipmentId(equipmentId);
-        if (pannes.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(pannes);
-    }
-
-    @GetMapping("/search/by-date")
-    public ResponseEntity<List<PanneEquipment>> getPannesByDateRange(
-            @RequestParam("startDate") LocalDateTime startDate,
-            @RequestParam("endDate") LocalDateTime endDate) {
-        List<PanneEquipment> pannes = panneEquipmentService.getPannesByDateRange(startDate, endDate);
-        if (pannes.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(pannes);
     }
 }

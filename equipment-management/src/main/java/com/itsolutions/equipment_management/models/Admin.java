@@ -5,17 +5,15 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter @Entity
-@Table(name = "`admin`")
+@Getter
+@Setter
+@Entity
+@Table(name = "admin")
 public class Admin extends Personne {
     private String departement;
 
-    @Override
-    public String getRole() {
-        return "ROLE_ADMIN";
-    }
     public Admin() {
-        this.setRole("ROLE_ADMIN");
+        super();
+        this.setRole(Role.ROLE_ADMIN);
     }
-
 }

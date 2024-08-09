@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 //terminer test gestion equipment
+@CrossOrigin(origins = "http://localhost:4200/")
+
 @RestController
 @RequestMapping("/api/equipment")
 public class EquipmentController {

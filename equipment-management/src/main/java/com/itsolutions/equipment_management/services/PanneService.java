@@ -23,6 +23,7 @@ public class PanneService {
         return panneRepository.findByEquipmentId(equipmentId);
     }
 
+
     public List<Panne> getAllPannes() {
         return panneRepository.findAll();
     }
@@ -33,12 +34,13 @@ public class PanneService {
             Panne existingPanne = optionalPanne.get();
             existingPanne.setDescription(panneDetails.getDescription());
             existingPanne.setDatePanne(panneDetails.getDatePanne());
-            existingPanne.setEquipment(panneDetails.getEquipment());
+            existingPanne.setEquipments(panneDetails.getEquipments()); //
             return panneRepository.save(existingPanne);
         } else {
             throw new RuntimeException("Panne not found with id: " + id);
         }
     }
+
 
     public void deletePanne(Long id) {
         if (panneRepository.existsById(id)) {

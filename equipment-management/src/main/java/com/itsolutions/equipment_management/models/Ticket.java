@@ -28,6 +28,7 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "technicien_id")
     private Technicien technicien;
+
     @Enumerated(EnumType.STRING)
     private EtatTicket etatTicket;
 

@@ -1,6 +1,7 @@
 package com.itsolutions.equipment_management.controllers;
 
 import com.itsolutions.equipment_management.models.Personne;
+import com.itsolutions.equipment_management.models.Role;
 import com.itsolutions.equipment_management.models.User;
 import com.itsolutions.equipment_management.security.JwtAuth;
 import com.itsolutions.equipment_management.services.PersonneService;
@@ -50,12 +51,12 @@ public class PersonneController {
             System.out.println("Encoded password from database: " + encodedPassword);
 
             if (passwordEncoder.matches(rawPassword, encodedPassword)) {
-                String role = foundUser.getRole();
-                String token = jwtAuth.generateToken(foundUser.getEmail(), role);
+                Role role = foundUser.getRole();
+                String token = jwtAuth.generateToken(foundUser.getEmail(), String.valueOf(role));
 
                 Map<String, String> response = new HashMap<>();
                 response.put("token", token);
-                response.put("role", role);
+                response.put("role", String.valueOf(role));
 
                 return ResponseEntity.ok(response);
             } else {

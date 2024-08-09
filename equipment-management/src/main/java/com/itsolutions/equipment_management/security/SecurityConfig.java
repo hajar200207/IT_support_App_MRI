@@ -1,4 +1,5 @@
 package com.itsolutions.equipment_management.security;
+
 import com.itsolutions.equipment_management.services.PersonneService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.boot.web.servlet.filter.OrderedHiddenHttpMethodFilter;
@@ -31,12 +32,17 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/users/register", "/api/users/login").permitAll()
-                        .requestMatchers("/api/users/delete").hasAnyRole("ADMIN")
-                        .requestMatchers("/api/users/**", "/api/equipements/**", "/api/techniciens/**","/api/pannes/**").hasRole("ADMIN")
-                        .requestMatchers("/api/tickets/create").authenticated()
+                        .requestMatchers("/api/users/delete").hasRole("ADMIN")
+
+                        .requestMatchers("/api/equipment/**").authenticated()
+                        .requestMatchers("/api/equipment/**").hasRole("ADMIN")
+                        .requestMatchers("/api/users/**", "/api/techniciens/**", "/api/pannes/**").hasRole("ADMIN")
                         .requestMatchers("/api/tickets/create").hasRole("USER")
-                        .requestMatchers("api/panne-equipment/**").hasRole("ADMIN")
+                        .requestMatchers("/api/panne-equipment/**").hasRole("USER")
                         .anyRequest().authenticated()
+                )
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
 

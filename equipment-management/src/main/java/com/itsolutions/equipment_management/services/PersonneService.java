@@ -1,11 +1,9 @@
 package com.itsolutions.equipment_management.services;
 
-import com.itsolutions.equipment_management.models.Admin;
-import com.itsolutions.equipment_management.models.Personne;
-import com.itsolutions.equipment_management.models.Technicien;
-import com.itsolutions.equipment_management.models.User;
+import com.itsolutions.equipment_management.models.*;
 import com.itsolutions.equipment_management.repositories.PersonneRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,26 +22,38 @@ public class PersonneService {
     @Autowired
     private PasswordEncoder passwordEncoder;
     private static final Logger logger = LoggerFactory.getLogger(PersonneService.class);
+    @Transactional
     public Personne registerPersonne(Personne personne) {
         logger.info("Registering new personne: {}", personne.getEmail());
         logger.info("Personne type: {}", personne.getClass().getSimpleName());
 
+        // Encode the password
         personne.setMotDePasse(passwordEncoder.encode(personne.getMotDePasse()));
 
         if (personne instanceof Technicien) {
             logger.info("Registering a Technicien");
             Technicien technicien = (Technicien) personne;
-            technicien.setRole("ROLE_TECHNICIEN");
+            technicien.setRole(Role.ROLE_TECHNICIEN);
             logger.info("Technicien specialite: {}", technicien.getSpecialite());
+        } else if (personne instanceof User) {
+            logger.info("Registering a User");
+            User user = (User) personne;
+            user.setRole(Role.ROLE_USER);
+        } else if (personne instanceof Admin) {
+            logger.info("Registering an Admin");
+            Admin admin = (Admin) personne;
+            admin.setRole(Role.ROLE_ADMIN);
         }
 
+        // Save the personne
         Personne savedPersonne = personneRepository.save(personne);
         logger.info("Personne saved with ID: {}", savedPersonne.getId());
 
         return savedPersonne;
     }
 
-        public Optional<Personne> findByEmail(String email) {
+
+    public Optional<Personne> findByEmail(String email) {
         return personneRepository.findByEmail(email);
     }
 
