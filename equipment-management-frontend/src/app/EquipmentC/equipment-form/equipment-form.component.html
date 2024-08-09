@@ -1,0 +1,19 @@
+<p>equipment-form works!</p>
+<div>
+  <h2>{{ isEditing ? 'Edit' : 'Add' }} Equipment</h2>
+  <form (ngSubmit)="save()">
+    <label for="nom">Nom:</label>
+    <input id="nom" [(ngModel)]="equipment.nom" name="nom" required />
+
+    <label for="type">Type:</label>
+    <input id="type" [(ngModel)]="equipment.type" name="type" required />
+
+    <label for="etatEquipement">Etat:</label>
+    <select id="etatEquipement" [(ngModel)]="equipment.etatEquipement" name="etatEquipement" required>
+      <option *ngFor="let etat of etatEquipements" [value]="etat">{{ etat }}</option>
+    </select>
+
+    <button type="submit">{{ isEditing ? 'Update' : 'Add' }}</button>
+  </form>
+</div>
+

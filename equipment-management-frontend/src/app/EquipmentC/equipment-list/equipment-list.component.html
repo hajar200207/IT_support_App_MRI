@@ -1,0 +1,37 @@
+<p>equipment-list works!</p>
+<div>
+  <h2>Equipments</h2>
+  <div>
+    <input [(ngModel)]="searchTerm" (input)="search()" placeholder="Search by name" />
+  </div>
+
+
+
+  <div></div>
+  <table>
+    <thead>
+    <tr>
+      <th> id</th>
+      <th>Nom</th>
+      <th>Type</th>
+      <th>Etat</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let equipment of equipments">
+      <td> {{equipment.id}}</td>
+      <td>{{ equipment.nom }}</td>
+      <td>{{ equipment.type }}</td>
+      <td>{{ equipment.etatEquipement }}</td>
+      <td>
+        <!-- equipment-list.component.html -->
+        <button (click)="deleteEquipment(equipment.id)">Delete</button>
+        <a [routerLink]="['/equipments/edit', equipment.id]">Edit</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <a routerLink="/equipments/new">Add New Equipment</a>
+</div>
+

@@ -5,6 +5,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { TechnicianDashboardComponent } from './technician-dashboard/technician-dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './register/registration.component';
+import {EquipmentListComponent} from "./EquipmentC/equipment-list/equipment-list.component";
+import {EquipmentFormComponent} from "./EquipmentC/equipment-form/equipment-form.component";
 
 const routes: Routes = [
   { path: 'user-dashboard', component: UserDashboardComponent },
@@ -13,6 +15,10 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'equipments', component: EquipmentListComponent },
+  { path: 'equipments/new', component: EquipmentFormComponent },
+  { path: 'equipments/edit/:id', component: EquipmentFormComponent },
+  { path: '', redirectTo: '/equipments', pathMatch: 'full' }
 ];
 
 @NgModule({

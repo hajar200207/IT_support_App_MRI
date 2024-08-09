@@ -10,6 +10,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './register/registration.component';
 import {AppRoutingModule} from "./app-routing.module";
+import { EquipmentListComponent } from './EquipmentC/equipment-list/equipment-list.component';
+import { EquipmentFormComponent } from './EquipmentC/equipment-form/equipment-form.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {AppRoutingModule} from "./app-routing.module";
     AdminDashboardComponent,
     TechnicianDashboardComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    EquipmentListComponent,
+    EquipmentFormComponent
   ],
   imports: [
     BrowserModule,

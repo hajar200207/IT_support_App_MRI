@@ -17,24 +17,24 @@
       <label for="password">Password:</label>
       <input id="password" type="password" formControlName="motDePasse" required>
     </div>
+
     <div>
-      <label for="username">username:</label>
+      <label for="username">Username:</label>
       <input id="username" type="text" formControlName="username" required>
     </div>
 
-    <div *ngIf="registreForm.get('role')?.value === 'user'">
+    <!-- Display fonction field if role is USER -->
+    <div *ngIf="registreForm.get('role')?.value === 'ROLE_USER'">
       <label for="fonction">Fonction:</label>
       <input id="fonction" type="text" formControlName="fonction">
     </div>
 
-    <div *ngIf="registreForm.get('role')?.value === 'technicien'">
+    <div *ngIf="registreForm.get('role')?.value === 'ROLE_TECHNICIEN'">
       <label for="specialite">Specialité:</label>
       <input id="specialite" type="text" formControlName="specialite">
     </div>
-    <div>
 
-      <input id="type" type="hidden" formControlName="type">
-    </div>
+    <input id="type" type="hidden" formControlName="type">
 
     <button type="submit" [disabled]="!registreForm.valid">Register</button>
   </form>
