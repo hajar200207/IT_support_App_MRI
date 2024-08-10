@@ -1,0 +1,54 @@
+<div class="panne-search-container">
+  <h2>Search Pannes</h2>
+
+  <!-- Search by Description -->
+  <form (ngSubmit)="searchByDescription()">
+    <div class="form-group">
+      <label for="keyword">Search by Description</label>
+      <input
+        type="text"
+        id="keyword"
+        [(ngModel)]="keyword"
+        name="keyword"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Search by Description</button>
+    </div>
+  </form>
+
+  <!-- Search by État Panne -->
+  <form (ngSubmit)="searchByEtat()">
+    <div class="form-group">
+      <label for="etatPanne">Search by État Panne</label>
+      <select
+        id="etatPanne"
+        [(ngModel)]="etatPanne"
+        name="etatPanne"
+        class="form-control"
+      >
+        <option value="">Select État Panne</option>
+        <option *ngFor="let etat of etatPanneOptions" [value]="etat">
+          {{ etat }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Search by État Panne</button>
+    </div>
+  </form>
+
+  <!-- Search Results -->
+  <div *ngIf="pannes.length > 0">
+    <h3>Search Results</h3>
+    <ul>
+      <li *ngFor="let panne of pannes">
+        {{ panne.description }} - {{ panne.etatPanne }}
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="pannes.length === 0">
+    <p>No results found.</p>
+  </div>
+</div>

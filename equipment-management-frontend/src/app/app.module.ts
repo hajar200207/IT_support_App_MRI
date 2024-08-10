@@ -12,6 +12,11 @@ import { RegistrationComponent } from './register/registration.component';
 import {AppRoutingModule} from "./app-routing.module";
 import { EquipmentListComponent } from './EquipmentC/equipment-list/equipment-list.component';
 import { EquipmentFormComponent } from './EquipmentC/equipment-form/equipment-form.component';
+import { PanneListComponent } from './PanneC/panne-list/panne-list.component';
+import { PanneFormComponent } from './PanneC/panne-form/panne-form.component';
+import { PanneSearchComponent } from './PanneC/panne-search/panne-search.component';
+import { PanneDetailComponent } from './PanneC/panne-detail/panne-detail.component';
+import { PanneEquipmentListComponent } from './PanneC/panne-equipment/panne-equipment-list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,12 @@ import { EquipmentFormComponent } from './EquipmentC/equipment-form/equipment-fo
     LoginComponent,
     RegistrationComponent,
     EquipmentListComponent,
-    EquipmentFormComponent
+    EquipmentFormComponent,
+    PanneListComponent,
+    PanneFormComponent,
+    PanneSearchComponent,
+    PanneDetailComponent,
+    PanneEquipmentListComponent
   ],
   imports: [
     BrowserModule,

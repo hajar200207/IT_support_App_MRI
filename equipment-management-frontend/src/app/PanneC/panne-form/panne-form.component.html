@@ -1,0 +1,55 @@
+<div class="panne-form-container">
+  <h2>{{ isEditing ? 'Edit Panne' : 'Report Panne' }}</h2>
+  <form (ngSubmit)="savePanne()">
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input
+        type="text"
+        id="description"
+        [(ngModel)]="panne.description"
+        name="description"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="etatPanne">État Panne</label>
+      <select
+        id="etatPanne"
+        [(ngModel)]="panne.etatPanne"
+        name="etatPanne"
+        class="form-control"
+        required
+      >
+        <option *ngFor="let etat of etatPanneEnum | keyvalue" [value]="etat.key">
+          {{ etat.value }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Sélectionnez des équipements</label>
+      <div *ngFor="let equipment of equipments">
+        <input
+          type="checkbox"
+          *ngIf="equipment.id !== undefined"
+          [value]="equipment.id"
+          [checked]="isSelected(equipment.id!)"
+          (change)="onCheckboxChange($event, equipment.id!)"
+        />
+        {{ equipment.nom }}
+      </div>
+    </div>
+
+
+
+
+
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">{{ isEditing ? 'Update' : 'Report' }}</button>
+      <button type="button" class="btn btn-secondary" [routerLink]="['/pannes']">Cancel</button>
+    </div>
+  </form>
+</div>

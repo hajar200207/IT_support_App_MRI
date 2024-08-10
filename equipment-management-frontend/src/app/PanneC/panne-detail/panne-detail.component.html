@@ -1,0 +1,16 @@
+<div *ngIf="panne">
+  <h2>Panne Details</h2>
+  <p><strong>Description:</strong> {{ panne.description }}</p>
+  <p><strong>Date:</strong> {{ panne.datePanne | date: 'short' }}</p>
+  <p><strong>État:</strong> {{ panne.etatPanne }}</p>
+
+  <h3>Associated Equipment</h3>
+  <ul>
+    <li *ngFor="let equipment of panne.equipmentList">
+      {{ equipment.nom }} - {{ equipment.type }} - {{ equipment.etatEquipement }}
+    </li>
+  </ul>
+</div>
+<div *ngIf="!panne">
+  <p>Loading...</p>
+</div>
