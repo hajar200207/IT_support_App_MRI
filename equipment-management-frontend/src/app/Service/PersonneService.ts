@@ -23,22 +23,6 @@ export class PersonneService {
     return localStorage.getItem('token');
   }
 
-
-  refreshToken(): Observable<any> {
-    const refreshToken = localStorage.getItem('refreshToken'); // Adjust based on how you store the refresh token
-    if (refreshToken) {
-      return this.http.post<any>(`${this.apiUrl}/refresh-token`, { refreshToken })
-        .pipe(
-          catchError(error => {
-            this.logout();
-            return throwError(error);
-          })
-        );
-    } else {
-      return throwError('No refresh token available');
-    }
-  }
-
   login(loginData: { email: string; motDePasse: string; type: string }): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/login`, loginData).pipe(
       catchError(error => {
@@ -48,13 +32,11 @@ export class PersonneService {
     );
   }
 
-
-
   register(user: Personne): Observable<any> {
-    console.log("ser"+user.role);console.log("ser"+user.email);console.log("ser"+user.motDePasse)
-    return this.http.post<any>(`${this.apiUrl}/register`, user)
-    console.log("/user"+user)
-
+    console.log("ser"+user.role);
+    console.log("ser"+user.email);
+    console.log("ser"+user.motDePasse);
+    return this.http.post<any>(`${this.apiUrl}/register`, user);
   }
 
   setCurrentUser(user: Personne) {
@@ -68,7 +50,6 @@ export class PersonneService {
   logout() {
     this.currentUserSubject.next(null);
     localStorage.removeItem('token');
-    localStorage.removeItem('refreshToken');
     this.router.navigate(['/login']);
   }
 

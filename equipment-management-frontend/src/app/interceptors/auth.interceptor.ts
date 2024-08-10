@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError, BehaviorSubject } from 'rxjs';
-import { catchError, filter, take, switchMap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { PersonneService } from '../Service/PersonneService';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  private isRefreshing = false;
-  private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor(private personneService: PersonneService) {}
 
@@ -15,10 +13,10 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(this.addAuthHeader(request)).pipe(
       catchError((error) => {
         if (error instanceof HttpErrorResponse && error.status === 401) {
-          return this.handle401Error(request, next);
-        } else {
-          return throwError(error);
+          // Handle 401 error (e.g., redirect to login)
+          this.personneService.logout();
         }
+        return throwError(error);
       })
     );
   }
@@ -34,35 +32,4 @@ export class AuthInterceptor implements HttpInterceptor {
     }
     return request;
   }
-
-  private handle401Error(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (!this.isRefreshing) {
-      this.isRefreshing = true;
-      this.refreshTokenSubject.next(null);
-
-      return this.personneService.refreshToken().pipe(
-        switchMap((response: any) => {
-          this.isRefreshing = false;
-          this.refreshTokenSubject.next(response.token); // Adjust according to your response
-          localStorage.setItem('token', response.token); // Save new token
-          return next.handle(this.addAuthHeader(request));
-        }),
-        catchError((err) => {
-          this.isRefreshing = false;
-          this.personneService.logout();
-          return throwError(err);
-        })
-      );
-    } else {
-      return this.refreshTokenSubject.pipe(
-        filter((token) => token != null),
-        take(1),
-        switchMap((token) => {
-          return next.handle(this.addAuthHeader(request));
-        })
-      );
-    }
-  }
-
-
 }

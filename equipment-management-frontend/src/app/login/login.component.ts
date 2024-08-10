@@ -10,6 +10,7 @@ import { PersonneService } from "../Service/PersonneService";
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  errorMessage: string = '';
 
   constructor(private fb: FormBuilder, private personneService: PersonneService, private router: Router) {
     this.loginForm = this.fb.group({
@@ -29,6 +30,10 @@ export class LoginComponent {
       };
       this.personneService.login(loginData).subscribe(
         response => {
+          if (this.mapRoleToType(response.role )!== type) {
+            this.errorMessage = `You are a ${response.role}. Please select the correct user type.`;
+            return;
+          }
           this.personneService.setToken(response.token);
           this.personneService.setCurrentUser({
             email: email,
@@ -40,8 +45,21 @@ export class LoginComponent {
         },
         error => {
           console.error('Login error', error);
+          this.errorMessage = 'Invalid credentials. Please try again.';
         }
       );
+    }
+  }
+  private mapRoleToType(role: string): string {
+    switch (role) {
+      case 'ROLE_USER':
+        return 'user';
+      case 'ROLE_TECHNICIEN':
+        return 'technicien';
+      case 'ROLE_ADMIN':
+        return 'admin';
+      default:
+        return '';
     }
   }
 }
