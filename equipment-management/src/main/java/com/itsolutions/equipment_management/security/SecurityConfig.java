@@ -34,7 +34,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/users/register", "/api/users/login").permitAll()
                         .requestMatchers("/api/users/delete").hasRole("ADMIN")
 
-                        .requestMatchers("/api/equipment/**").authenticated()
+                        .requestMatchers("/api/equipment/**").permitAll()
                         .requestMatchers("/api/equipment/**").hasRole("ADMIN")
                         .requestMatchers("/api/users/**", "/api/techniciens/**", "/api/pannes/**").hasRole("ADMIN")
                         .requestMatchers("/api/tickets/create").hasRole("USER")

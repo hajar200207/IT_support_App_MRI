@@ -91,4 +91,13 @@ public abstract class Personne implements UserDetails {
     public boolean hasRole(String role) {
         return roles.contains(role);
     }
+
+    @PrePersist
+    @PreUpdate
+    private void setUsername() {
+        if (this.username == null) {
+            this.username = this.email;
+        }
+    }
+
 }
