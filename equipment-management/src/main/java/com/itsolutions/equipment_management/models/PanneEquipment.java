@@ -22,7 +22,7 @@ public class PanneEquipment {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "panne_id")
+    @JoinColumn(name = "panne_id", nullable = false)
     private Panne panne;
 
     @ManyToMany
@@ -33,6 +33,6 @@ public class PanneEquipment {
     )
     private Set<Equipment> equipments;
 
+    @Column(name = "date_of_link")
     private LocalDateTime dateOfLink;
 }
-

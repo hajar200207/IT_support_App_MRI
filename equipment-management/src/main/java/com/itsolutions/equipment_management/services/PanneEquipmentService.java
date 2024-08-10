@@ -1,5 +1,6 @@
 package com.itsolutions.equipment_management.services;
 
+
 import com.itsolutions.equipment_management.models.PanneEquipment;
 import com.itsolutions.equipment_management.repositories.PanneEquipmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,6 @@ public class PanneEquipmentService {
     @Autowired
     private PanneEquipmentRepository panneEquipmentRepository;
 
-    public List<PanneEquipment> getAllPanneEquipments() {
-        return panneEquipmentRepository.findAll();
-    }
 
     public PanneEquipment getPanneEquipmentById(Long id) {
         return panneEquipmentRepository.findById(id).orElse(null);
@@ -27,5 +25,9 @@ public class PanneEquipmentService {
 
     public void deletePanneEquipment(Long id) {
         panneEquipmentRepository.deleteById(id);
+    }
+
+    public List<PanneEquipment> getAllHistorique() {
+        return panneEquipmentRepository.findAll();
     }
 }

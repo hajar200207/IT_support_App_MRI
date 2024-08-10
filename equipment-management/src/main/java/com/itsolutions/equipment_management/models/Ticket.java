@@ -1,5 +1,6 @@
 package com.itsolutions.equipment_management.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 

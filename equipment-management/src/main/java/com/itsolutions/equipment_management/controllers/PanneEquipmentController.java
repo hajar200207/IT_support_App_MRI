@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 @RequestMapping("/api/panne-equipment")
 public class PanneEquipmentController {
@@ -16,8 +16,8 @@ public class PanneEquipmentController {
     private PanneEquipmentService panneEquipmentService;
 
     @GetMapping
-    public List<PanneEquipment> getAllPanneEquipments() {
-        return panneEquipmentService.getAllPanneEquipments();
+    public List<PanneEquipment> getHistorique() {
+        return panneEquipmentService.getAllHistorique();
     }
 
     @GetMapping("/{id}")

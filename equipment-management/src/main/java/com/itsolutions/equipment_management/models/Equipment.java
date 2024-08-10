@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -21,18 +22,11 @@ public class Equipment {
     private Long id;
 
     private String nom;
-
     private String type;
 
     @Enumerated(EnumType.STRING)
     private EtatEquipement etatEquipement;
-
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable(
-            name = "panne_equipment",
-            joinColumns = @JoinColumn(name = "equipment_id"),
-            inverseJoinColumns = @JoinColumn(name = "panne_id")
-    )
-    private Set<Panne> pannes;
+@JsonIgnore
+    @ManyToMany(mappedBy = "equipments")
+    private Set<Panne> pannes = new HashSet<>();
 }

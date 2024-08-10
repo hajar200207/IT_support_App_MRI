@@ -33,12 +33,13 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/users/register", "/api/users/login").permitAll()
                         .requestMatchers("/api/users/delete").hasRole("ADMIN")
-
+                        .requestMatchers("api/pannes/**").permitAll()
                         .requestMatchers("/api/equipment/**").permitAll()
-                        .requestMatchers("/api/equipment/**").hasRole("ADMIN")
-                        .requestMatchers("/api/users/**", "/api/techniciens/**", "/api/pannes/**").hasRole("ADMIN")
-                        .requestMatchers("/api/tickets/create").hasRole("USER")
-                        .requestMatchers("/api/panne-equipment/**").hasRole("USER")
+                                .requestMatchers("api/panne-equipment/**").permitAll()
+                                .requestMatchers("api/tickets/**").permitAll()
+//                        .requestMatchers("/api/users/**", "/api/techniciens/**").hasRole("ADMIN")
+//                        .requestMatchers("/api/tickets/create").hasRole("USER")
+//                        .requestMatchers("/api/panne-equipment/**").hasRole("USER")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
