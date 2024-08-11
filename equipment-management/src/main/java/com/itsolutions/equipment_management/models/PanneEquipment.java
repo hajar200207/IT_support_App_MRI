@@ -1,5 +1,6 @@
 package com.itsolutions.equipment_management.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,16 +24,14 @@ public class PanneEquipment {
 
     @ManyToOne
     @JoinColumn(name = "panne_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Panne panne;
 
-    @ManyToMany
-    @JoinTable(
-            name = "panne_equipment",
-            joinColumns = @JoinColumn(name = "panne_id"),
-            inverseJoinColumns = @JoinColumn(name = "equipment_id")
-    )
-    private Set<Equipment> equipments;
+    @ManyToOne
+    @JoinColumn(name = "equipment_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Equipment equipment;
 
-    @Column(name = "date_of_link")
     private LocalDateTime dateOfLink;
 }
+
