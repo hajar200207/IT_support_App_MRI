@@ -30,7 +30,7 @@ public class TicketController {
     public ResponseEntity<List<Ticket>> getTicketsByUserId(@PathVariable Long userId) {
         return ResponseEntity.ok(ticketService.getTicketsByUserId(userId));
     }
-
+    @PreAuthorize("hasRole('TECHNICIEN')")
     @GetMapping("/technicien/{technicienId}")
     public ResponseEntity<List<Ticket>> getTicketsByTechnicienId(@PathVariable Long technicienId) {
         return ResponseEntity.ok(ticketService.getTicketsByTechnicienId(technicienId));

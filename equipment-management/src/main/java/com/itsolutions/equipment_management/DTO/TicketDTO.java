@@ -19,5 +19,4 @@ public class TicketDTO {
     private Long userId;
     private Long technicienId;
 
-    // Getters and Setters
 }
