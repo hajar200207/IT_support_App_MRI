@@ -32,7 +32,7 @@ export class TechnicienTicketsComponent implements OnInit {
   updateStatus(ticketId: number, event: Event): void {
     const target = event.target as HTMLSelectElement;
     const newStatus = target.value;
-    this.ticketService.updateTicketStatus(ticketId, newStatus).subscribe(
+    this.ticketService.updateTicketStatus(this.technicienId, ticketId, newStatus).subscribe(
       (response: string) => {
         console.log(response);
         this.loadTickets(); // Recharge les tickets pour voir les changements
@@ -42,4 +42,5 @@ export class TechnicienTicketsComponent implements OnInit {
       }
     );
   }
+
 }

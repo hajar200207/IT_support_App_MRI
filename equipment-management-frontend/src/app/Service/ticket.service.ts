@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {EtatTicket, Ticket} from "../models/Ticket";
 import {TicketDTO} from "../DTO/TicketDTO";
+import {PersonneService} from "./PersonneService";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class TicketService {
     })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient , private  personneService :PersonneService ) { }
 
     createTicket(ticket: {
         etatTicket: any;
@@ -32,21 +33,24 @@ export class TicketService {
     return this.http.get<TicketDTO[]>(`${this.apiUrl}/all`);
   }
 
-  // Récupération des tickets par ID utilisateur
   getTicketsByUserId(userId: number): Observable<Ticket[]> {
     return this.http.get<Ticket[]>(`${this.apiUrl}/user/${userId}`);
   }
 
-  // Récupération des tickets par ID technicien
   getTicketsByTechnicienId(technicienId: number): Observable<TicketDTO[]> {
     return this.http.get<TicketDTO[]>(`${this.apiUrl}/technicien/${technicienId}`);
   }
 
-  updateTicketStatus(ticketId: number, etatTicket: string): Observable<string> {
-    return this.http.put<string>(`${this.apiUrl}/update-status/${ticketId}`, { etatTicket }, this.httpOptions);
+  updateTicketStatus(technicienId: number, ticketId: number, etatTicket: string): Observable<string> {
+    const token = this.personneService.getToken(); // Assurez-vous que cette méthode retourne le bon token
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+    return this.http.put<string>(`${this.apiUrl}/update-status/${technicienId}/${ticketId}`, { etatTicket }, { headers });
   }
 
-  // Assignation d'un ticket à un technicien
+
   assignTicket(ticketId: number, technicienId: number): Observable<Ticket> {
     return this.http.put<Ticket>(`${this.apiUrl}/assign/${ticketId}?technicienId=${technicienId}`, this.httpOptions);
   }
