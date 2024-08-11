@@ -21,6 +21,11 @@ import { TicketListComponent } from './TicketC/ticket-list/ticket-list.component
 import { CreateTicketComponent } from './TicketC/create-ticket/create-ticket.component';
 import { AdminTicketsComponent } from './TicketC/admin-tickets/admin-tickets.component';
 import { TechnicienTicketsComponent } from './TicketC/technicien-tickets/technicien-tickets.component';
+import { HomeComponent } from './home/home.component';
+import { ServicesComponent } from './services/services.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactComponent } from './contact/contact.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +45,12 @@ import { TechnicienTicketsComponent } from './TicketC/technicien-tickets/technic
     TicketListComponent,
     CreateTicketComponent,
     AdminTicketsComponent,
-    TechnicienTicketsComponent
+    TechnicienTicketsComponent,
+    HomeComponent,
+    ServicesComponent,
+    AboutUsComponent,
+    ContactComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

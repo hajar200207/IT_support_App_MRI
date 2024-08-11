@@ -1,0 +1,16 @@
+.services-container {
+  padding: 50px;
+  background-color: #fff;
+  color: #1e3a8a; /* Blue */
+  text-align: center;
+}
+
+.services-list {
+  display: flex;
+  justify-content: space-around;
+}
+
+.service-item {
+  margin: 20px;
+  width: 30%;
+}

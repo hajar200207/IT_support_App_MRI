@@ -1,0 +1,43 @@
+<div class="home-container">
+  <header class="header">
+    <div class="logo">
+      <img src="assets/IT%20SUPPO.png" alt="IT Solutions Logo">
+      <h1>IT SolutionH</h1>
+    </div>
+    <nav class="nav-links">
+      <a (click)="scrollToSection('services')">Services</a>
+      <a (click)="scrollToSection('about-us')">About Us</a>
+      <a (click)="scrollToSection('contact')">Contact</a>
+      <a routerLink="/login" class="login-btn">Login</a>
+    </nav>
+  </header>
+
+  <section class="hero-section">
+    <div class="hero-text">
+      <h2>Welcome to IT Solutions</h2>
+      <p>Your trusted partner in IT equipment management.</p>
+    </div>
+    <div class="hero-animation">
+      <img src="https://www.callcentersforhire.com/wp-content/uploads/2018/09/service-callcenters.jpg" alt="Equipment Image 1">
+      <img src="https://www.shutterstock.com/shutterstock/photos/1181227630/display_1500/stock-photo-technical-support-customer-service-business-technology-internet-concept-1181227630.jpg" alt="Equipment Image 2">
+      <img src="https://www.pxl-vision.com/hubfs/ISO%2027001.jpg" alt="Equipment Image 3">
+      <img src="https://avatars.mds.yandex.net/i?id=a0c08edfd562947ab2bd022b92ae9b38c5e84755-5870018-images-thumbs&n=13" alt="Equipment Image 4">
+    </div>
+  </section>
+
+  <section class="services-section" id="services">
+    <app-services></app-services>
+  </section>
+
+  <section class="about-us-section" id="about-us">
+    <app-about-us></app-about-us>
+  </section>
+
+  <section class="contact-section" id="contact">
+    <app-contact></app-contact>
+  </section>
+
+  <footer>
+    <app-footer></app-footer>
+  </footer>
+</div>

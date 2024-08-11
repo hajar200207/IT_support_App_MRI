@@ -1,0 +1,112 @@
+.home-container {
+  text-align: center;
+  color: #fff;
+  background-color: #1e3a8a;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #fbbf24;
+}
+
+.logo h1 {
+  font-size: 2.5rem;
+  color: #1e3a8a;
+}
+
+.nav-links a {
+  margin: 0 15px;
+  font-size: 1.2rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-links .login-btn {
+  background-color: #3b82f6;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.nav-links .login-btn:hover {
+  background-color: #2563eb;
+}
+
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.hero-text h2 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero-text p {
+  font-size: 1.5rem;
+}
+
+.hero-animation {
+  position: relative;
+  width: 50%;
+  max-width: 1200px;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.hero-animation img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  animation: fadeInOut 12s infinite;
+  object-fit: cover;
+}
+
+.hero-animation img:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.hero-animation img:nth-child(2) {
+  animation-delay: 4s;
+}
+
+.hero-animation img:nth-child(3) {
+  animation-delay: 8s;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }
+  25%, 75% { opacity: 1; }
+}
+
+.nav-links a {
+  cursor: pointer;
+}
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+  margin-right: 10px;
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #fff;
+}

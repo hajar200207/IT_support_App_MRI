@@ -16,6 +16,10 @@ import { CreateTicketComponent } from "./TicketC/create-ticket/create-ticket.com
 import { AdminTicketsComponent } from "./TicketC/admin-tickets/admin-tickets.component";
 import { TechnicienTicketsComponent } from "./TicketC/technicien-tickets/technicien-tickets.component";
 import { TicketListComponent } from "./TicketC/ticket-list/ticket-list.component";
+import {HomeComponent} from "./home/home.component";
+import {ContactComponent} from "./contact/contact.component";
+import {AboutUsComponent} from "./about-us/about-us.component";
+import {ServicesComponent} from "./services/services.component";
 
 const routes: Routes = [
   { path: 'user-dashboard', component: UserDashboardComponent },
@@ -37,11 +41,15 @@ const routes: Routes = [
   { path: 'admin-tickets', component: AdminTicketsComponent },
   { path: 'technicien-tickets', component: TechnicienTicketsComponent },
   { path: 'tickets', component: TicketListComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' } // Rediriger vers /login par défaut
+  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
+  { path: 'services', component: ServicesComponent },
+  { path: 'about-us', component: AboutUsComponent },
+  { path: 'contact', component: ContactComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

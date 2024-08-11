@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { PersonneService } from "../Service/PersonneService";
+import { PersonneService } from '../Service/PersonneService';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +10,10 @@ import { PersonneService } from "../Service/PersonneService";
 export class LoginComponent {
   loginForm: FormGroup;
   errorMessage: string = '';
+  showLoginForm = false; // Contrôle l'affichage du formulaire de connexion
+  showHeart = false; // Contrôle l'affichage de l'icône cœur
 
-  constructor(private fb: FormBuilder, private personneService: PersonneService, private router: Router) {
+  constructor(private fb: FormBuilder, private personneService: PersonneService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       motDePasse: ['', Validators.required],
@@ -30,7 +31,7 @@ export class LoginComponent {
       };
       this.personneService.login(loginData).subscribe(
         response => {
-          if (this.mapRoleToType(response.role )!== type) {
+          if (this.mapRoleToType(response.role) !== type) {
             this.errorMessage = `You are a ${response.role}. Please select the correct user type.`;
             return;
           }
@@ -50,6 +51,7 @@ export class LoginComponent {
       );
     }
   }
+
   private mapRoleToType(role: string): string {
     switch (role) {
       case 'ROLE_USER':

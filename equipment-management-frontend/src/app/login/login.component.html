@@ -1,39 +1,61 @@
-<div class="login-container">
-  <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
-    <h2>Login</h2>
+<!-- login.component.html -->
+<div class="login-wrapper">
+  <!-- Section d'image et bouton -->
+  <div class="login-image-container" [ngClass]="{'hide': showLoginForm}">
+    <img src="https://avatars.mds.yandex.net/i?id=23cd5acb789da3f8d2f4376bb8b0d8eca8da707f-4387482-images-thumbs&ref=rim&n=33&w=428&h=300" alt="Login Image" class="login-image" />
+    <button (click)="showLoginForm = true; showHeart = true" class="login-button">
+      <img *ngIf="showHeart" src="https://avatars.mds.yandex.net/i?id=f58f82fc5b425df48d03f7b79e8f7d7d7329f8b2-5220232-images-thumbs&n=13" alt="Heart" class="heart-image" />
+      Login
+    </button>
+  </div>
 
-    <div *ngIf="errorMessage" class="error-message">
-      {{ errorMessage }}
+  <!-- Section du formulaire de connexion -->
+  <div class="login-form-container" [ngClass]="{'show': showLoginForm}">
+    <button class="back-button" (click)="showLoginForm = false; showHeart = false">Back</button>
+    <div class="login-container">
+      <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
+        <h2>Login</h2>
+
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+
+        <div class="form-group">
+          <label for="email">
+            <i class="fas fa-envelope"></i> Email
+          </label>
+          <input id="email" formControlName="email" type="email" placeholder="Enter your email" />
+          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
+            Valid email is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="motDePasse">
+            <i class="fas fa-lock"></i> Password
+          </label>
+          <input id="motDePasse" formControlName="motDePasse" type="password" placeholder="Enter your password" />
+          <div *ngIf="loginForm.get('motDePasse')?.invalid && loginForm.get('motDePasse')?.touched" class="error">
+            Password is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="type">
+            <i class="fas fa-user-tag"></i> Select Type
+          </label>
+          <select id="type" formControlName="type">
+            <option value="user">User</option>
+            <option value="technicien">Technicien</option>
+            <option value="admin">Admin</option>
+          </select>
+          <div *ngIf="loginForm.get('type')?.invalid && loginForm.get('type')?.touched" class="error">
+            Please select a type.
+          </div>
+        </div>
+
+        <button type="submit" [disabled]="loginForm.invalid" class="submit-button">Login</button>
+      </form>
     </div>
-
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input id="email" formControlName="email" type="email" placeholder="Enter your email" />
-      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
-        Valid email is required.
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="motDePasse">Password</label>
-      <input id="motDePasse" formControlName="motDePasse" type="password" placeholder="Enter your password" />
-      <div *ngIf="loginForm.get('motDePasse')?.invalid && loginForm.get('motDePasse')?.touched" class="error">
-        Password is required.
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="type">Select Type</label>
-      <select id="type" formControlName="type">
-        <option value="user">User</option>
-        <option value="technicien">Technicien</option>
-        <option value="admin">Admin</option>
-      </select>
-      <div *ngIf="loginForm.get('type')?.invalid && loginForm.get('type')?.touched" class="error">
-        Please select a type.
-      </div>
-    </div>
-
-    <button type="submit" [disabled]="loginForm.invalid">Login</button>
-  </form>
+  </div>
 </div>
