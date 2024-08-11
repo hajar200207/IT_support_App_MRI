@@ -10,7 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
-// TicketDTO.java
 public class TicketDTO {
     private Long id;
     private String description;

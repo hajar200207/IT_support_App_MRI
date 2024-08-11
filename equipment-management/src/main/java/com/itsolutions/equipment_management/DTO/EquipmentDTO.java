@@ -16,9 +16,6 @@ public class EquipmentDTO {
     private String type;
     private EtatEquipement etatEquipement;
 
-    public EquipmentDTO(Long id, String nom) {
-        this.id = id;
-        this.nom = nom;
-    }
+
 }
 

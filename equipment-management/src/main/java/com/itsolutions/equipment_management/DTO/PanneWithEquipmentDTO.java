@@ -20,10 +20,4 @@ public class PanneWithEquipmentDTO {
     private EtatPanne etatPanne;
     private List<EquipmentDTO> equipmentList;
 
-    public void setPanneId(Long id) {
-        
-    }
-
-    public void setEquipments(List<EquipmentDTO> equipmentDTOs) {
-    }
 }
