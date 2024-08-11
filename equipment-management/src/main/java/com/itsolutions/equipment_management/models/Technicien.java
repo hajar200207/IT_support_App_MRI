@@ -2,6 +2,7 @@ package com.itsolutions.equipment_management.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -13,6 +14,8 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "Technicien")
+@JsonIgnoreProperties(ignoreUnknown = true)
+
 @PrimaryKeyJoinColumn(name = "id")
 public class Technicien extends Personne {
 
