@@ -1,3 +1,5 @@
+import {EtatTicket} from "../models/Ticket";
+
 export  interface TicketDTO{
   id: number;
   description: string;
@@ -6,4 +8,6 @@ export  interface TicketDTO{
   technicienId: number | null; // Updated from technicien: { id: number; ... }
   panneId: number;
   newTechnicianId?: number;
+  newStatus?: EtatTicket;
+  dateCreation: string;
 }

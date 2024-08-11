@@ -38,12 +38,11 @@ export class TicketService {
   }
 
   // Récupération des tickets par ID technicien
-  getTicketsByTechnicienId(technicienId: number): Observable<Ticket[]> {
-    return this.http.get<Ticket[]>(`${this.apiUrl}/technicien/${technicienId}`);
+  getTicketsByTechnicienId(technicienId: number): Observable<TicketDTO[]> {
+    return this.http.get<TicketDTO[]>(`${this.apiUrl}/technicien/${technicienId}`);
   }
 
-  // Mise à jour du statut d'un ticket
-  updateTicketStatus(ticketId: number, etatTicket: EtatTicket): Observable<string> {
+  updateTicketStatus(ticketId: number, etatTicket: string): Observable<string> {
     return this.http.put<string>(`${this.apiUrl}/update-status/${ticketId}`, { etatTicket }, this.httpOptions);
   }
 

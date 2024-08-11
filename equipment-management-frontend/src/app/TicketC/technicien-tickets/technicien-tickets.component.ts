@@ -1,7 +1,7 @@
+// technicien-tickets.component.ts
 import { Component, OnInit } from '@angular/core';
-import {EtatTicket, Ticket} from "../../models/Ticket";
-import {TicketService} from "../../Service/ticket.service";
-
+import { TicketService } from '../../Service/ticket.service';
+import { TicketDTO } from '../../DTO/TicketDTO';
 
 @Component({
   selector: 'app-technicien-tickets',
@@ -9,33 +9,33 @@ import {TicketService} from "../../Service/ticket.service";
   styleUrls: ['./technicien-tickets.component.css']
 })
 export class TechnicienTicketsComponent implements OnInit {
-  tickets: Ticket[] = [];
-  etatTicketOptions = Object.values(EtatTicket);
+  tickets: TicketDTO[] = [];
+  technicienId = 42; // Remplace avec l'ID du technicien connecté, si disponible
 
-  constructor(private ticketService: TicketService) {}
+  constructor(private ticketService: TicketService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadTickets();
   }
 
-  loadTickets() {
-    // Supposons que nous avons l'ID du technicien connecté
-    const technicienId = 1; // À remplacer par l'ID réel du technicien connecté
-    this.ticketService.getTicketsByTechnicienId(technicienId).subscribe(
-      (tickets) => {
+  loadTickets(): void {
+    this.ticketService.getTicketsByTechnicienId(this.technicienId).subscribe(
+      (tickets: TicketDTO[]) => {
         this.tickets = tickets;
       },
       (error) => {
-        console.error('Erreur lors du chargement des tickets', error);
+        console.error('Erreur lors de la récupération des tickets', error);
       }
     );
   }
 
-  updateTicketStatus(ticketId: number, newStatus: EtatTicket) {
+  updateStatus(ticketId: number, event: Event): void {
+    const target = event.target as HTMLSelectElement;
+    const newStatus = target.value;
     this.ticketService.updateTicketStatus(ticketId, newStatus).subscribe(
-      (response) => {
-        console.log('Statut du ticket mis à jour', response);
-        this.loadTickets(); // Recharger les tickets pour refléter les changements
+      (response: string) => {
+        console.log(response);
+        this.loadTickets(); // Recharge les tickets pour voir les changements
       },
       (error) => {
         console.error('Erreur lors de la mise à jour du statut du ticket', error);

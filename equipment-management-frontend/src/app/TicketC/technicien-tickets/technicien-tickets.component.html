@@ -1,30 +1,20 @@
-<p>technicien-tickets works!</p>
+<!-- technicien-tickets.component.html -->
+<div *ngIf="tickets.length === 0">
+  <p>Aucun ticket disponible.</p>
+</div>
 
-<h2>Mes tickets assignés</h2>
-<table>
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>Description</th>
-    <th>État</th>
-    <th>Action</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let ticket of tickets">
-    <td>{{ticket.id}}</td>
-    <td>{{ticket.description}}</td>
-    <td>{{ticket.etatTicket}}</td>
-    <td>
-      <select
-        [ngModel]="ticket.etatTicket"
-        (ngModelChange)="updateTicketStatus(ticket.id!, $event)"
-      >
-        <option *ngFor="let etat of etatTicketOptions" [value]="etat">
-          {{etat}}
-        </option>
-      </select>
-    </td>
-  </tr>
-  </tbody>
-</table>
+<ul *ngIf="tickets.length > 0">
+  <li *ngFor="let ticket of tickets">
+    <p>ID: {{ ticket.id }}</p>
+    <p>Description: {{ ticket.description }}</p>
+    <p>Date de création: {{ ticket.dateCreation | date }}</p>
+    <p>État: {{ ticket.etatTicket }}</p>
+    <select (change)="updateStatus(ticket.id, $event)">
+      <option value="" disabled selected>Changer le statut</option>
+      <option value="OUVERT">OUVERT</option>
+      <option value="EN_COURS">EN_COURS</option>
+      <option value="RESOLU">RESOLU</option>
+      <option value="FERME"> FERME</option>
+    </select>
+  </li>
+</ul>
