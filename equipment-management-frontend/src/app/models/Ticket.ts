@@ -14,6 +14,10 @@ export interface Ticket {
     id: number;
     description: string;
   };
+  admin :{
+    id : number;
+    departement:string;
+  }
 }
 
 export enum EtatTicket {
