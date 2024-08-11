@@ -1,26 +1,19 @@
-<div *ngIf="panneEquipments.length > 0">
-  <h2>Historique des Pannes et Équipements</h2>
-  <table>
+<div class="container">
+  <h2>Pannes et Équipements</h2>
+  <table class="table table-striped">
     <thead>
     <tr>
       <th>ID</th>
-      <th>Panne ID</th>
-      <th>Equipment ID</th>
-      <th>Date</th>
-      <th>Description</th>
+      <th>Panne Description</th>
+      <th>Equipment Name</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of panneEquipments">
-      <td>{{ item.id }}</td>
-      <td>{{ item.panneId }}</td>
-      <td>{{ item.equipmentId }}</td>
-      <td>{{ item.date | date: 'short' }}</td>
-      <td>{{ item.description }}</td>
+    <tr *ngFor="let panneEquipment of panneEquipments">
+      <td>{{ panneEquipment.id }}</td>
+      <td>{{ panneEquipment.panne.description }}</td>
+      <td>{{ panneEquipment.equipment.nom }}</td>
     </tr>
     </tbody>
   </table>
-</div>
-<div *ngIf="panneEquipments.length === 0">
-  <p>Aucun historique trouvé.</p>
 </div>

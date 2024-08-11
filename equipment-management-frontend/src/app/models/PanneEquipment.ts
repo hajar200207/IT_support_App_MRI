@@ -1,7 +1,9 @@
+import {Panne} from "./Panne.model";
+import {Equipment} from "./equipment.model";
+
 export interface PanneEquipment {
   id: number;
-  panneId: number;
-  equipmentId: number;
-  date: string;
-  description: string;
+  panne: Panne;
+  equipment: Equipment;
+  dateOfLink: Date;
 }

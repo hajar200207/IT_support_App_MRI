@@ -10,17 +10,20 @@ import {PanneEquipmentService} from "../../Service/PanneEquipmentService";
 export class PanneEquipmentListComponent implements OnInit {
   panneEquipments: PanneEquipment[] = [];
 
-  constructor(private panneEquipmentService: PanneEquipmentService) {}
+  constructor(private panneEquipmentService: PanneEquipmentService) { }
 
   ngOnInit(): void {
     this.loadPanneEquipments();
   }
 
   loadPanneEquipments(): void {
-    this.panneEquipmentService.getAllPanneEquipments().subscribe(data => {
-      this.panneEquipments = data;
-    }, error => {
-      console.error('Error fetching panne equipment data', error);
-    });
+    this.panneEquipmentService.getAllPanneEquipments().subscribe(
+      data => {
+        this.panneEquipments = data;
+      },
+      error => {
+        console.error('Error fetching panne equipment data', error);
+      }
+    );
   }
 }
