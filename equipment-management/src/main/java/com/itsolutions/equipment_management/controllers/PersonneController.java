@@ -2,6 +2,7 @@ package com.itsolutions.equipment_management.controllers;
 
 import com.itsolutions.equipment_management.models.Personne;
 import com.itsolutions.equipment_management.models.Role;
+import com.itsolutions.equipment_management.models.Technicien;
 import com.itsolutions.equipment_management.models.User;
 import com.itsolutions.equipment_management.security.JwtAuth;
 import com.itsolutions.equipment_management.services.PersonneService;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:4200/")
@@ -95,6 +97,26 @@ public class PersonneController {
     public ResponseEntity<String> deleteUser(@PathVariable Long id) {
         personneService.deletePersonne(id);
         return ResponseEntity.ok("User deleted successfully");
+    }
+    @GetMapping("/techniciens")
+    public ResponseEntity<List<Technicien>> getAllTechniciens() {
+        List<Technicien> techniciens = personneService.getAllTechniciens();
+        return ResponseEntity.ok(techniciens);
+    }
+    @GetMapping("/techniciens/{id}")
+    public ResponseEntity<?> getTechnicienById(@PathVariable Long id) {
+        try {
+            Technicien technicien = personneService.getTechnicienById(id);
+            return ResponseEntity.ok(technicien);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(404).body("Technicien not found");
+        }
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Personne>> getAllUsers() {
+        List<Personne> users = personneService.getAllUsers();
+        return ResponseEntity.ok(users);
     }
 
 }

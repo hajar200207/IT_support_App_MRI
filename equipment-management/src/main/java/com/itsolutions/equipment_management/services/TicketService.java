@@ -16,7 +16,7 @@ public class TicketService {
 
     @Autowired
     private TicketRepository ticketRepository;
-@Autowired
+    @Autowired
     private TechnicienRepository technicienRepository;
 
     public Ticket createTicket(Ticket ticket) {
@@ -48,5 +48,9 @@ public class TicketService {
         ticket.setTechnicien(technicien);
 
         return ticketRepository.save(ticket);
+    }
+
+    public List<Ticket> getAllTickets() {
+        return  ticketRepository.findAll();
     }
 }

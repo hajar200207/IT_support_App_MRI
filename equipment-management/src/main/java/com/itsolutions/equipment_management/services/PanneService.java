@@ -2,7 +2,6 @@ package com.itsolutions.equipment_management.services;
 
 import com.itsolutions.equipment_management.DTO.EquipmentDTO;
 import com.itsolutions.equipment_management.DTO.PanneWithEquipmentDTO;
-import com.itsolutions.equipment_management.exception.ResourceNotFoundException;
 import com.itsolutions.equipment_management.models.Equipment;
 import com.itsolutions.equipment_management.models.EtatPanne;
 import com.itsolutions.equipment_management.models.Panne;
@@ -12,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
+
 @Service
 public class PanneService {
 
@@ -96,6 +95,10 @@ public class PanneService {
             );
         }
         return null;
+    }
+
+    public Panne findById(Long id) {
+        return panneRepository.findById(id).orElse(null); // Adjusted to handle Optional return type
     }
 
 //    public List<PanneWithEquipmentDTO> findAllPannesWithEquipments() {

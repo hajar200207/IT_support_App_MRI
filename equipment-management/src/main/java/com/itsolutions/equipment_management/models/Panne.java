@@ -1,7 +1,9 @@
 package com.itsolutions.equipment_management.models;
+import java.util.List;
 import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.itsolutions.equipment_management.repositories.EquipmentRepository;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -35,6 +37,9 @@ public class Panne {
     @Transient
     private Set<Long> equipmentIds = new HashSet<>();
 
+    @JsonManagedReference(value = "panne-tickets")
+    @OneToMany(mappedBy = "panne")
+    private List<Ticket> tickets;
     @ManyToMany
     @JoinTable(
             name = "panne_equipment",

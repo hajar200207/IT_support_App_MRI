@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PersonneService {
@@ -107,5 +108,29 @@ public class PersonneService {
         }
         throw new EntityNotFoundException("Personne not found with id: " + id);
     }
+    public List<Technicien> getAllTechniciens() {
+        // Fetch all Personne with the role of TECHNICIEN
+        List<Personne> personnes = personneRepository.findAllByRole(Role.ROLE_TECHNICIEN);
 
+        // Filter and cast to Technicien
+        return personnes.stream()
+                .filter(personne -> personne instanceof Technicien)
+                .map(personne -> (Technicien) personne)
+                .collect(Collectors.toList());
+    }
+
+    public Technicien getTechnicienById(Long id) {
+        Personne personne = personneRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Personne not found with ID: " + id));
+
+        if (personne instanceof Technicien) {
+            return (Technicien) personne;
+        } else {
+            throw new EntityNotFoundException("Technicien not found with ID: " + id);
+        }
+    }
+
+    public List<Personne> getAllUsers() {
+        return  personneRepository.findAll();
+    }
 }

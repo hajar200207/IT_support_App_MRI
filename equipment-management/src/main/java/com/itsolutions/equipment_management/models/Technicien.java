@@ -1,11 +1,13 @@
 package com.itsolutions.equipment_management.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.PrimaryKeyJoinColumn;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,8 +19,14 @@ public class Technicien extends Personne {
     @Column(name = "specialite")
     private String specialite;
 
+    @JsonManagedReference(value = "technicien-tickets")
+    @OneToMany(mappedBy = "technicien")
+    private List<Ticket> tickets;
+
     public Technicien() {
         super();
         this.setRole(Role.ROLE_TECHNICIEN);
     }
 }
+
+
