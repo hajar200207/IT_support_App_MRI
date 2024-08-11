@@ -68,13 +68,29 @@ export class PanneFormComponent implements OnInit {
     this.panne.equipmentIds = this.selectedEquipmentIds;
 
     if (this.isEditing) {
-      this.panneService.updatePanne(this.panne.id, this.panne).subscribe(() => {
-        this.router.navigate(['/pannes']);
-      });
+      this.panneService.updatePanne(this.panne.id, this.panne).subscribe(
+        () => {
+          // Gestion du succès
+          console.log('Panne mise à jour avec succès');
+          this.router.navigate(['/pannes']);
+        },
+        (error) => {
+          // Gestion des erreurs
+          console.error('Erreur lors de la mise à jour de la panne:', error);
+        }
+      );
     } else {
-      this.panneService.reportPanne(this.panne).subscribe(() => {
-        this.router.navigate(['/pannes']);
-      });
+      this.panneService.reportPanne(this.panne).subscribe(
+        () => {
+          // Gestion du succès
+          console.log('Panne signalée avec succès');
+          this.router.navigate(['/pannes']);
+        },
+        (error) => {
+          // Gestion des erreurs
+          console.error('Erreur lors de la signalisation de la panne:', error);
+        }
+      );
     }
   }
 }

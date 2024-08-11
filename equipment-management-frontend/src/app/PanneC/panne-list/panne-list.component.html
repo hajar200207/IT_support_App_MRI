@@ -4,7 +4,6 @@
     <thead>
     <tr>
       <th>Description</th>
-      <th>Date Panne</th>
       <th>État Panne</th>
       <th>Actions</th>
     </tr>
@@ -12,7 +11,7 @@
     <tbody>
     <tr *ngFor="let panne of pannes">
       <td>{{ panne.description }}</td>
-      <td>{{ panne.datePanne | date: 'shortDate' }}</td>
+   <!--   <td>{{ panne.datePanne| date:'short' }}</td>-->
       <td>{{ panne.etatPanne }}</td>
       <td>
         <button
@@ -27,11 +26,8 @@
         >
           Delete
         </button>
-        <button
-          class="btn btn-primary"
-          [routerLink]="['/pannes', panne.id, 'details']"
-        >
-          View Details
+        <button>
+        <a [routerLink]="['/pannes/detail', panne.id]">Voir détails</a>
         </button>
       </td>
     </tr>

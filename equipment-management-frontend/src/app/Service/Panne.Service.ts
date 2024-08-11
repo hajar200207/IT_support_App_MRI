@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Panne } from '../models/Panne.model';
 import { PanneWithEquipmentDTO } from '../DTO/panne-with-equipment.dto';
+import {PersonneService} from "./PersonneService";
 
 
 
@@ -13,8 +14,15 @@ import { PanneWithEquipmentDTO } from '../DTO/panne-with-equipment.dto';
 export class PanneService {
   private apiUrl = 'http://localhost:8080/api/pannes';
   private apiurlhis=' http://localhost:8080/api/panne-equipment'
-
-  constructor(private http: HttpClient) {}
+  private getHeaders(): HttpHeaders {
+    const token = this.personneService.getToken();
+    let headers = new HttpHeaders();
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
+    return headers;
+  }
+  constructor(private http: HttpClient , private    personneService:PersonneService) {}
 
   reportPanne(panne: Panne): Observable<Panne> {
     return this.http.post<Panne>(`${this.apiUrl}/report`, panne);
@@ -32,11 +40,13 @@ export class PanneService {
     );
   }
 
+
   updatePanne(id: number, panne: Panne): Observable<Panne> {
-    return this.http.put<Panne>(`${this.apiUrl}/${id}`, panne).pipe(
+    return this.http.put<Panne>(`${this.apiUrl}/${id}`, panne, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
+
 
   deletePanne(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(

@@ -18,7 +18,13 @@ export class PanneListComponent implements OnInit {
 
   loadPannes(): void {
     this.panneService.getAllPannes().subscribe((data) => {
-      this.pannes = data;
+      this.pannes = data.map(panne => {
+        // Convertir les dates au format Date
+        if (panne.datePanne) {
+          panne.datePanne = new Date(panne.datePanne);
+        }
+        return panne;
+      });
     });
   }
 

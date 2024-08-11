@@ -30,6 +30,7 @@ const routes: Routes = [
   { path: 'pannes/new', component: PanneFormComponent },
   { path: 'pannes/edit/:id', component: PanneFormComponent },
   { path: 'pannes/detail/:id', component: PanneDetailComponent },
+
   { path: 'pannes/search', component: PanneSearchComponent },
   { path: 'panne-equipment', component: PanneEquipmentListComponent },
   { path: 'create-ticket', component: CreateTicketComponent },
