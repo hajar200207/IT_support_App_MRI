@@ -7,6 +7,7 @@ import com.itsolutions.equipment_management.repositories.EquipmentRepository;
 import com.itsolutions.equipment_management.services.PanneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -52,6 +53,7 @@ public class PanneController {
         }
         return ResponseEntity.ok(panne);
     }
+    @PreAuthorize("hasRole('ADMIN')")
 
     @PutMapping("/{id}")
     public ResponseEntity<Panne> updatePanne(@PathVariable Long id, @RequestBody Panne panneDetails) {
@@ -93,12 +95,13 @@ public class PanneController {
 //    public List<PanneWithEquipmentDTO> getAllPannesWithEquipments() {
 //        return panneService.findAllPannesWithEquipments();
 //    }
-//    @GetMapping("/{id}/details")
-//    public ResponseEntity<PanneWithEquipmentDTO> getPanneWithEquipment(@PathVariable Long id) {
-//        PanneWithEquipmentDTO dto = panneService.getPanneWithEquipment(id);
-//        if (dto == null) {
-//            return ResponseEntity.notFound().build();
-//        }
-//        return ResponseEntity.ok(dto);
-//    }
+    @GetMapping("/{id}/details")
+    public ResponseEntity<PanneWithEquipmentDTO> getPanneWithEquipment(@PathVariable Long id) {
+        PanneWithEquipmentDTO dto = panneService.getPanneWithEquipment(id);
+        if (dto == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(dto);
+    }
+
 }

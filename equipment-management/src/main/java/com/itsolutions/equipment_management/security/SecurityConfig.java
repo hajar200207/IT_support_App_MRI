@@ -14,6 +14,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -35,8 +36,8 @@ public class SecurityConfig {
                                 .requestMatchers("api/users/**").permitAll()
                         .requestMatchers("/api/users/delete").hasRole("ADMIN")
                                 .requestMatchers("/api/tickets/create").permitAll()
-                        .requestMatchers("api/pannes/**").permitAll()
                         .requestMatchers("/api/equipment/**").permitAll()
+                                .requestMatchers("/api/pannes/**").hasAnyRole( "ADMIN")
                                 .requestMatchers("api/panne-equipment/**").permitAll()
                                 .requestMatchers("/api/tickets/assign/").authenticated()
 //                        .requestMatchers("/api/users/**", "/api/techniciens/**").hasRole("ADMIN")

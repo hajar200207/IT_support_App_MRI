@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.itsolutions.equipment_management.repositories.EquipmentRepository;
 import jakarta.persistence.*;
@@ -22,6 +23,8 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Entity
 @Table(name = "panne")
+@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class Panne {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
