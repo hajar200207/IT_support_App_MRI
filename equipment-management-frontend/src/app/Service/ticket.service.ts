@@ -33,8 +33,8 @@ export class TicketService {
     return this.http.get<TicketDTO[]>(`${this.apiUrl}/all`);
   }
 
-  getTicketsByUserId(userId: number): Observable<Ticket[]> {
-    return this.http.get<Ticket[]>(`${this.apiUrl}/user/${userId}`);
+  getTicketsByUserId(userId: number): Observable<TicketDTO[]> {
+    return this.http.get<TicketDTO[]>(`${this.apiUrl}/user/${userId}`);
   }
 
   getTicketsByTechnicienId(technicienId: number): Observable<TicketDTO[]> {
