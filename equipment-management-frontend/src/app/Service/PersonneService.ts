@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Personne } from '../models/personne.model'; // Ensure this path is correct
+import { Personne } from '../models/personne.model';
+import {Technicien} from "../models/technicien.model"; // Ensure this path is correct
 
 @Injectable({
   providedIn: 'root'
@@ -77,5 +78,19 @@ export class PersonneService {
 
   getUserProfile(): Observable<Personne> {
     return this.http.get<Personne>(`${this.apiUrl}/profile`);
+  }
+  getAllTechniciens(): Observable<Technicien[]> {
+    return this.http.get<Technicien[]>(`${this.apiUrl}/techniciens`).pipe(
+      catchError(error => {
+        console.error('Error fetching techniciens', error);
+        return throwError(error);
+      })
+    );
+  }
+  getTechnicienById(id: number): Observable<Technicien> {
+    return this.http.get<Technicien>(`${this.apiUrl}/techniciens/${id}`);
+  }
+  getAllUsers(): Observable<Personne[]> {
+    return this.http.get<Personne[]>(`${this.apiUrl}/all`);
   }
 }

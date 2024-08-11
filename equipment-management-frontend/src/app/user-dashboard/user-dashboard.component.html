@@ -6,3 +6,16 @@
     <li><a routerLink="/historique-pannes">Historique des Pannes</a></li>
   </ul>
 </nav>
+
+<nav>
+  <a routerLink="/create-ticket">Créer un Ticket</a>
+  <a routerLink="/other">Autre Page</a>
+</nav>
+
+<div *ngIf="user">
+  <h2>Profil Utilisateur</h2>
+  <p><strong>id:</strong> {{ user.id }}</p>
+  <p><strong>Email:</strong> {{ user.email }}</p>
+  <p><strong>Rôle:</strong> {{ user.role }}</p>
+  <!-- Ajouter d'autres informations de profil si nécessaire -->
+</div>

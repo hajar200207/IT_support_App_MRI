@@ -1,0 +1,30 @@
+<p>technicien-tickets works!</p>
+
+<h2>Mes tickets assignés</h2>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Description</th>
+    <th>État</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let ticket of tickets">
+    <td>{{ticket.id}}</td>
+    <td>{{ticket.description}}</td>
+    <td>{{ticket.etatTicket}}</td>
+    <td>
+      <select
+        [ngModel]="ticket.etatTicket"
+        (ngModelChange)="updateTicketStatus(ticket.id!, $event)"
+      >
+        <option *ngFor="let etat of etatTicketOptions" [value]="etat">
+          {{etat}}
+        </option>
+      </select>
+    </td>
+  </tr>
+  </tbody>
+</table>

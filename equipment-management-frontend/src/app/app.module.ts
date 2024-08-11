@@ -17,6 +17,10 @@ import { PanneFormComponent } from './PanneC/panne-form/panne-form.component';
 import { PanneSearchComponent } from './PanneC/panne-search/panne-search.component';
 import { PanneDetailComponent } from './PanneC/panne-detail/panne-detail.component';
 import { PanneEquipmentListComponent } from './PanneC/panne-equipment/panne-equipment-list.component';
+import { TicketListComponent } from './TicketC/ticket-list/ticket-list.component';
+import { CreateTicketComponent } from './TicketC/create-ticket/create-ticket.component';
+import { AdminTicketsComponent } from './TicketC/admin-tickets/admin-tickets.component';
+import { TechnicienTicketsComponent } from './TicketC/technicien-tickets/technicien-tickets.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,11 @@ import { PanneEquipmentListComponent } from './PanneC/panne-equipment/panne-equi
     PanneFormComponent,
     PanneSearchComponent,
     PanneDetailComponent,
-    PanneEquipmentListComponent
+    PanneEquipmentListComponent,
+    TicketListComponent,
+    CreateTicketComponent,
+    AdminTicketsComponent,
+    TechnicienTicketsComponent
   ],
   imports: [
     BrowserModule,

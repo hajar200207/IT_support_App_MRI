@@ -4,6 +4,8 @@ export interface Personne {
   motDePasse: string;
   role?: Role;
   type: string;
+  prenom?: string;
+  nom?: string;
 }
 export enum Role {
   TECHNICIEN = 'ROLE_TECHNICIEN',

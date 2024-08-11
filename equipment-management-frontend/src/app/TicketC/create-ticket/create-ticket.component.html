@@ -1,0 +1,51 @@
+<form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="description">Description:</label>
+    <input id="description" formControlName="description" />
+    <div *ngIf="ticketForm.get('description')?.invalid && ticketForm.get('description')?.touched" class="error">
+      Description is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="etatTicket">Status:</label>
+    <select id="etatTicket" formControlName="etatTicket">
+      <option value="OUVERT">Open</option>
+      <option value="EN_COURS">In Progress</option>
+      <option value="RESOLU">Resolved</option>
+      <option value="FERME">Closed</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="userId">User ID:</label>
+    <input id="userId" formControlName="userId" />
+  </div>
+
+  <div>
+    <label for="userType">User Type:</label>
+    <select id="userType" formControlName="userType">
+      <option value="user">User</option>
+    </select>
+  </div>
+
+  <!-- Hidden fields for technician information -->
+  <div style="display: none;">
+    <label for="technicienId">Technician ID:</label>
+    <input id="technicienId" formControlName="technicienId" />
+  </div>
+
+  <div style="display: none;">
+    <label for="technicienType">Technician Type:</label>
+    <select id="technicienType" formControlName="technicienType">
+      <option value="technicien">Technician</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="panneId">Panne ID:</label>
+    <input id="panneId" formControlName="panneId" />
+  </div>
+
+  <button type="submit" [disabled]="ticketForm.invalid">Submit</button>
+</form>

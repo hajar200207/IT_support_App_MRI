@@ -12,6 +12,10 @@ import {PanneListComponent} from "./PanneC/panne-list/panne-list.component";
 import {PanneDetailComponent} from "./PanneC/panne-detail/panne-detail.component";
 import {PanneSearchComponent} from "./PanneC/panne-search/panne-search.component";
 import {PanneEquipmentListComponent} from "./PanneC/panne-equipment/panne-equipment-list.component";
+import {CreateTicketComponent} from "./TicketC/create-ticket/create-ticket.component";
+import {AdminTicketsComponent} from "./TicketC/admin-tickets/admin-tickets.component";
+import {TechnicienTicketsComponent} from "./TicketC/technicien-tickets/technicien-tickets.component";
+import {TicketListComponent} from "./TicketC/ticket-list/ticket-list.component";
 
 const routes: Routes = [
   { path: 'user-dashboard', component: UserDashboardComponent },
@@ -31,6 +35,10 @@ const routes: Routes = [
   { path: 'pannes/search', component: PanneSearchComponent },
   { path: 'pannes/:id/details', component: PanneDetailComponent },
   { path: 'panne-equipment', component: PanneEquipmentListComponent },
+  { path: 'create-ticket', component: CreateTicketComponent },
+  { path: 'admin-tickets', component: AdminTicketsComponent },
+  { path: 'technicien-tickets', component: TechnicienTicketsComponent },
+  { path: 'tickets', component: TicketListComponent },
 
 ];
 
