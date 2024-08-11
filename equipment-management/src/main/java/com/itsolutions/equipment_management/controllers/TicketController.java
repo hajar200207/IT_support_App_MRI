@@ -25,10 +25,21 @@ public class TicketController {
     public ResponseEntity<Ticket> createTicket(@RequestBody Ticket ticket) {
         return ResponseEntity.ok(ticketService.createTicket(ticket));
     }
-
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Ticket>> getTicketsByUserId(@PathVariable Long userId) {
-        return ResponseEntity.ok(ticketService.getTicketsByUserId(userId));
+    public ResponseEntity<List<TicketDTO>> getTicketsByUserId(@PathVariable Long userId) {
+        List<Ticket> tickets = ticketService.getTicketsByUserId(userId);
+        List<TicketDTO> dtos = tickets.stream().map(ticket -> {
+            TicketDTO dto = new TicketDTO();
+            dto.setId(ticket.getId());
+            dto.setDescription(ticket.getDescription());
+            dto.setEtatTicket(String.valueOf(ticket.getEtatTicket()));
+            dto.setUserId(ticket.getUser().getId());
+            dto.setTechnicienId(ticket.getTechnicien() != null ? ticket.getTechnicien().getId() : null);
+            dto.setPanneId(ticket.getPanne() != null ? ticket.getPanne().getId() : null);
+            return dto;
+        }).collect(Collectors.toList());
+        return ResponseEntity.ok(dtos);
     }
     @PreAuthorize("hasRole('TECHNICIEN')")
     @GetMapping("/technicien/{technicienId}")
