@@ -42,10 +42,10 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-    @JsonBackReference(value = "admin-tickets")
-    @ManyToOne
-    @JoinColumn(name = "admin_id", nullable = false)
-    private Admin admin;
+//    @JsonBackReference(value = "admin-tickets")
+//    @ManyToOne
+//    @JoinColumn(name = "admin_id", nullable = false)
+//    private Admin admin;
     @JsonBackReference(value = "panne-tickets")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "panne_id")
