@@ -296,6 +296,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <finalName>equipment-management</finalName>
     </build>
 
 </project>

@@ -73,7 +73,9 @@ public class TicketController {
             dto.setDescription(ticket.getDescription());
             dto.setEtatTicket(String.valueOf(ticket.getEtatTicket()));
             dto.setUserId(ticket.getUser().getId());
-            dto.setTechnicienId(ticket.getTechnicien().getId());
+            if(!(ticket.getTechnicien().getId() == null)){
+                dto.setTechnicienId(ticket.getTechnicien().getId());
+            }
             dto.setPanneId(ticket.getPanne().getId());
             return dto;
         }).collect(Collectors.toList());
