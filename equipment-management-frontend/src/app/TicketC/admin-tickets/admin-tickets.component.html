@@ -22,7 +22,6 @@
       <td>{{ ticket.technicienId }}</td>
       <td>{{ ticket.panneId }}</td>
       <td>
-        <!-- Utilisation de la nouvelle propriété pour le nouvel ID du technicien -->
         <input [(ngModel)]="ticket.newTechnicianId" placeholder="Technician ID" type="number"/>
         <button (click)="updateTechnician(ticket)">Update</button>
       </td>

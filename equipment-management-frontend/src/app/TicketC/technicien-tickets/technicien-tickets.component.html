@@ -2,7 +2,12 @@
 <div *ngIf="tickets.length === 0">
   <p>Aucun ticket disponible.</p>
 </div>
-
+<div *ngIf="user">
+  <h2>Profil Utilisateur</h2>
+  <p><strong>id:</strong> {{ user.id }}</p>
+  <p><strong>Email:</strong> {{ user.email }}</p>
+  <p><strong>Rôle:</strong> {{ user.role }}</p>
+</div>
 <ul *ngIf="tickets.length > 0">
   <li *ngFor="let ticket of tickets">
     <p>ID: {{ ticket.id }}</p>

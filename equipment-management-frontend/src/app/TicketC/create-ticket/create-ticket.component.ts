@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {TicketService} from "../../Service/ticket.service";
+import { TicketService } from '../../Service/ticket.service';
+import { TicketDTOcreat, EtatTicket } from '../../DTO/TicketDTOcreat';
 
 @Component({
   selector: 'app-create-ticket',
@@ -10,41 +11,30 @@ import {TicketService} from "../../Service/ticket.service";
 export class CreateTicketComponent implements OnInit {
   ticketForm: FormGroup;
 
-  // Define default values
-  defaultTechnicianId = 42;  // Set this to the default technician ID
-  defaultTechnicianType = 'technicien';  // Set this to the default technician type
-
   constructor(private fb: FormBuilder, private ticketService: TicketService) {
     this.ticketForm = this.fb.group({
       description: ['', Validators.required],
       etatTicket: ['OUVERT'],
-      userId: [''],
-      userType: ['user'],
-      technicienId: [this.defaultTechnicianId],  // Set default value
-      technicienType: [this.defaultTechnicianType],  // Set default value
-      panneId: ['']
+      userId: ['', Validators.required],
+      userType: ['user'], // Hidden input field value
+      panneId: ['', Validators.required]
     });
+
   }
 
-  ngOnInit(): void {
-    // Initialization logic if needed
-  }
+  ngOnInit(): void {}
 
   onSubmit(): void {
     if (this.ticketForm.valid) {
       const formValue = this.ticketForm.value;
 
-      // Construct the nested JSON object
-      const ticketData = {
+      const ticketData: TicketDTOcreat = {
+        id: 0, // Set id to 0 or remove it if not needed, assuming backend assigns an id
         description: formValue.description,
         etatTicket: formValue.etatTicket,
         user: {
           id: formValue.userId,
           type: formValue.userType
-        },
-        technicien: {
-          id: formValue.technicienId,
-          type: formValue.technicienType
         },
         panne: {
           id: formValue.panneId
@@ -63,4 +53,6 @@ export class CreateTicketComponent implements OnInit {
       );
     }
   }
+
+  protected readonly EtatTicket = EtatTicket;
 }

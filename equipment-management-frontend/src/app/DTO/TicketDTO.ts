@@ -4,8 +4,8 @@ export  interface TicketDTO{
   id: number;
   description: string;
   etatTicket: string;
-  userId: number;          // Updated from user: { id: number; ... }
-  technicienId: number | null; // Updated from technicien: { id: number; ... }
+  userId: number;
+  technicienId: number | null; 
   panneId: number;
   newTechnicianId?: number;
   newStatus?: EtatTicket;

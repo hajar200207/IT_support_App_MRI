@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TicketService } from '../../Service/ticket.service';
 import { TicketDTO } from "../../DTO/TicketDTO";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-admin-tickets',
@@ -15,23 +16,27 @@ export class AdminTicketsComponent implements OnInit {
   ngOnInit(): void {
     this.loadTickets();
   }
-
   loadTickets(): void {
-    this.ticketService.getAllTickets().subscribe((tickets: TicketDTO[]) => {
-      console.log('Fetched tickets:', tickets); // Debugging line
-      this.tickets = tickets;
-    }, error => {
-      console.error('Error loading tickets', error);
+    this.ticketService.getAllTickets().subscribe({
+      next: (response) => {
+        console.log('Fetched tickets:', response); // Debugging line
+        this.tickets = response;
+      },
+      error: (error) => {
+        console.error('Error loading tickets', error);
+      }
     });
   }
+
 
   updateTechnician(ticket: TicketDTO): void {
     const newTechnicianId = ticket.newTechnicianId;
 
     if (newTechnicianId !== undefined && newTechnicianId !== null && newTechnicianId > 0) {
       this.ticketService.assignTicket(ticket.id, newTechnicianId).subscribe({
-        next: () => {
-          this.loadTickets(); // Recharger les tickets pour refléter la mise à jour
+        next: (response) => {
+          this.loadTickets(); // Reload tickets to reflect the update
+          console.log(response); // This will log "Ticket status updated successfully"
           console.log(`Technician with ID ${newTechnicianId} assigned to ticket ${ticket.id}`);
         },
         error: (error) => {
@@ -42,4 +47,5 @@ export class AdminTicketsComponent implements OnInit {
       console.error('Invalid Technician ID provided');
     }
   }
+
 }

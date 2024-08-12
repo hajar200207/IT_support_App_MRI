@@ -1,51 +1,74 @@
-<form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="description">Description:</label>
-    <input id="description" formControlName="description" />
-    <div *ngIf="ticketForm.get('description')?.invalid && ticketForm.get('description')?.touched" class="error">
-      Description is required.
+<div class="container mt-5">
+  <h2>Create Ticket</h2>
+
+  <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
+    <!-- Description Field -->
+    <div class="form-group mb-3">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        class="form-control"
+        rows="3"
+        placeholder="Enter ticket description"
+        required
+      ></textarea>
+      <div *ngIf="ticketForm.get('description')?.invalid && ticketForm.get('description')?.touched" class="text-danger">
+        Description is required.
+      </div>
     </div>
-  </div>
 
-  <div>
-    <label for="etatTicket">Status:</label>
-    <select id="etatTicket" formControlName="etatTicket">
-      <option value="OUVERT">Open</option>
-      <option value="EN_COURS">In Progress</option>
-      <option value="RESOLU">Resolved</option>
-      <option value="FERME">Closed</option>
-    </select>
-  </div>
+    <!-- Etat Ticket Field -->
+    <div class="form-group mb-3">
+      <label for="etatTicket">Ticket Status</label>
+      <select
+        id="etatTicket"
+        formControlName="etatTicket"
+        class="form-select"
+      >
+        <option [ngValue]="EtatTicket.OUVERT">Open</option>
+        <option [ngValue]="EtatTicket.EN_COURS">In Progress</option>
+        <option [ngValue]="EtatTicket.RESOLU">Resolved</option>
+        <option [ngValue]="EtatTicket.FERME">Closed</option>
+      </select>
+    </div>
 
-  <div>
-    <label for="userId">User ID:</label>
-    <input id="userId" formControlName="userId" />
-  </div>
+    <!-- User ID Field -->
+    <div class="form-group mb-3">
+      <label for="userId">User ID</label>
+      <input
+        type="number"
+        id="userId"
+        formControlName="userId"
+        class="form-control"
+        placeholder="Enter user ID"
+        required
+      />
+      <div *ngIf="ticketForm.get('userId')?.invalid && ticketForm.get('userId')?.touched" class="text-danger">
+        User ID is required.
+      </div>
+    </div>
 
-  <div>
-    <label for="userType">User Type:</label>
-    <select id="userType" formControlName="userType">
-      <option value="user">User</option>
-    </select>
-  </div>
+    <!-- Panne ID Field -->
+    <div class="form-group mb-3">
+      <label for="panneId">Panne ID</label>
+      <input
+        type="number"
+        id="panneId"
+        formControlName="panneId"
+        class="form-control"
+        placeholder="Enter panne ID"
+        required
+      />
+      <div *ngIf="ticketForm.get('panneId')?.invalid && ticketForm.get('panneId')?.touched" class="text-danger">
+        Panne ID is required.
+      </div>
+    </div>
 
-  <!-- Hidden fields for technician information -->
-  <div style="display: none;">
-    <label for="technicienId">Technician ID:</label>
-    <input id="technicienId" formControlName="technicienId" />
-  </div>
+    <!-- Hidden User Type Field -->
+    <input type="hidden" formControlName="userType" />
 
-  <div style="display: none;">
-    <label for="technicienType">Technician Type:</label>
-    <select id="technicienType" formControlName="technicienType">
-      <option value="technicien">Technician</option>
-    </select>
-  </div>
-
-  <div>
-    <label for="panneId">Panne ID:</label>
-    <input id="panneId" formControlName="panneId" />
-  </div>
-
-  <button type="submit" [disabled]="ticketForm.invalid">Submit</button>
-</form>
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary" [disabled]="ticketForm.invalid">Create Ticket</button>
+  </form>
+</div>
