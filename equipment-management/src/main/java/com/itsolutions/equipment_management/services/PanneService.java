@@ -101,6 +101,10 @@ public class PanneService {
         return panneRepository.findById(id).orElse(null); // Adjusted to handle Optional return type
     }
 
+    public Long getTotalPannes() {
+        return  panneRepository.count();
+    }
+
 //    public List<PanneWithEquipmentDTO> findAllPannesWithEquipments() {
 //        List<Panne> pannes = panneRepository.findAllPannesWithEquipments();
 //        return pannes.stream()

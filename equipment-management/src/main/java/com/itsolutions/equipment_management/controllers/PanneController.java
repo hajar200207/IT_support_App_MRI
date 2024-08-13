@@ -103,5 +103,8 @@ public class PanneController {
         }
         return ResponseEntity.ok(dto);
     }
-
+    @GetMapping("/total")
+    public ResponseEntity<Long> getTotalPannes() {
+        return ResponseEntity.ok(panneService.getTotalPannes());
+    }
 }

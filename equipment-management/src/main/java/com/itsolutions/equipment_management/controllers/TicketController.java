@@ -81,5 +81,8 @@ public class TicketController {
         }).collect(Collectors.toList());
     }
 
-
+    @GetMapping("/total")
+    public ResponseEntity<Long> getTotalTickets() {
+        return ResponseEntity.ok(ticketService.getTotalTickets());
+    }
 }

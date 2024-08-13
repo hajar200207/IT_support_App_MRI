@@ -47,4 +47,8 @@ public class EquipmentController {
         }
         return ResponseEntity.ok(equipmentList);
     }
+    @GetMapping("/total")
+    public ResponseEntity<Long> getTotalEquipments() {
+        return ResponseEntity.ok(equipmentService.getTotalEquipments());
+    }
 }

@@ -53,4 +53,8 @@ public class TicketService {
     public List<Ticket> getAllTickets() {
         return  ticketRepository.findAll();
     }
+
+    public Long getTotalTickets() {
+        return  ticketRepository.count();
+    }
 }
