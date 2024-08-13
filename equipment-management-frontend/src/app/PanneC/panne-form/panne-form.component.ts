@@ -84,7 +84,7 @@ export class PanneFormComponent implements OnInit {
         () => {
           // Gestion du succès
           console.log('Panne signalée avec succès');
-          this.router.navigate(['/pannes']);
+          this.router.navigate(['admin/pannes']);
         },
         (error) => {
           // Gestion des erreurs

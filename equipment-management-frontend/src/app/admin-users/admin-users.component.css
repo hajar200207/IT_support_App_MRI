@@ -1,0 +1,12 @@
+/* admin-users.component.css */
+.admin-users {
+  padding: 20px;
+}
+
+.admin-users table {
+  width: 100%;
+}
+
+.admin-users button {
+  margin-right: 10px;
+}

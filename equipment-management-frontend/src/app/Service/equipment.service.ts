@@ -31,4 +31,8 @@ export class EquipmentService {
   getEquipmentByNom(nom: string): Observable<Equipment[]> {
     return this.http.get<Equipment[]>(`${this.apiUrl}/find-by-nom/${nom}`);
   }
+
+  getTotalEquipments(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/total`);
+  }
 }

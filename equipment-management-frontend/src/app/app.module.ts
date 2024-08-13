@@ -26,6 +26,15 @@ import { ServicesComponent } from './services/services.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
+import { AdminAccountsComponent } from './admin-accounts/admin-accounts.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminUsersComponent } from './admin-users/admin-users.component';
+import {MatTableModule} from "@angular/material/table";
+import { EditUserComponent } from './edit-user/edit-user.component';
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -50,7 +59,10 @@ import { FooterComponent } from './footer/footer.component';
     ServicesComponent,
     AboutUsComponent,
     ContactComponent,
-    FooterComponent
+    FooterComponent,
+    AdminAccountsComponent,
+    AdminUsersComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +70,13 @@ import { FooterComponent } from './footer/footer.component';
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatDialogModule,
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

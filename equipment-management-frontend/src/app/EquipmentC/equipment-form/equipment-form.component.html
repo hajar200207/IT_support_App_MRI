@@ -1,19 +1,32 @@
-<p>equipment-form works!</p>
-<div>
-  <h2>{{ isEditing ? 'Edit' : 'Add' }} Equipment</h2>
-  <form (ngSubmit)="save()">
-    <label for="nom">Nom:</label>
-    <input id="nom" [(ngModel)]="equipment.nom" name="nom" required />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
-    <label for="type">Type:</label>
-    <input id="type" [(ngModel)]="equipment.type" name="type" required />
+<div class="equipment-form">
+  <h2 class="title">
+    <i class="fas fa-{{ isEditing ? 'edit' : 'plus-circle' }}"></i>
+    {{ isEditing ? 'Edit' : 'Add' }} Equipment
+  </h2>
+  <form (ngSubmit)="save()" class="form">
+    <div class="form-group">
+      <label for="nom"><i class="fas fa-tag"></i> Nom:</label>
+      <input id="nom" [(ngModel)]="equipment.nom" name="nom" required />
+    </div>
 
-    <label for="etatEquipement">Etat:</label>
-    <select id="etatEquipement" [(ngModel)]="equipment.etatEquipement" name="etatEquipement" required>
-      <option *ngFor="let etat of etatEquipements" [value]="etat">{{ etat }}</option>
-    </select>
+    <div class="form-group">
+      <label for="type"><i class="fas fa-cube"></i> Type:</label>
+      <input id="type" [(ngModel)]="equipment.type" name="type" required />
+    </div>
 
-    <button type="submit">{{ isEditing ? 'Update' : 'Add' }}</button>
+    <div class="form-group">
+      <label for="etatEquipement"><i class="fas fa-info-circle"></i> Etat:</label>
+      <select id="etatEquipement" [(ngModel)]="equipment.etatEquipement" name="etatEquipement" required>
+        <option *ngFor="let etat of etatEquipements" [value]="etat">{{ etat }}</option>
+      </select>
+    </div>
+
+    <button type="submit" class="submit-btn">
+      <i class="fas fa-{{ isEditing ? 'save' : 'plus' }}"></i>
+      {{ isEditing ? 'Update' : 'Add' }}
+    </button>
   </form>
 </div>
 

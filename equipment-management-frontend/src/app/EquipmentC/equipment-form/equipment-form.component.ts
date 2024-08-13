@@ -33,11 +33,11 @@ export class EquipmentFormComponent implements OnInit {
   save(): void {
     if (this.isEditing) {
       this.equipmentService.updateEquipment(this.equipment.id as number, this.equipment).subscribe(() => {
-        this.router.navigate(['/equipments']);
+        this.router.navigate(['admin/equipments']);
       });
     } else {
       this.equipmentService.addEquipment(this.equipment).subscribe(() => {
-        this.router.navigate(['/equipments']);
+        this.router.navigate(['admin/equipments']);
       });
     }
   }

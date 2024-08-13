@@ -1,8 +1,64 @@
-<p>admin-dashboard works!</p>
-<nav>
-  <a routerLink="/pannes/new">Créer un Ticket</a>
-</nav>
-<app-equipment-list></app-equipment-list>
-<app-admin-tickets>
-</app-admin-tickets>
-<app-panne-list></app-panne-list>
+<div class="admin-dashboard">
+  <div class="sidebar">
+    <h2>Admin Dashboard</h2>
+    <button (click)="logout()" class="logout-button">Log Out</button>
+    <button (click)="openAdminInfo()" class="info-button">
+      <i class="fa fa-user"></i> Voir Info Admin
+    </button>
+    <ul>
+      <li (click)="setActive('equipments')">
+        <a [routerLink]="['/admin/equipments']" routerLinkActive="active">Gestion des Équipements</a>
+      </li>
+      <li (click)="setActive('pannes')">
+        <a [routerLink]="['/admin/pannes']" routerLinkActive="active">Gestion des Pannes</a>
+      </li>
+      <li (click)="setActive('admin-tickets')">
+        <a [routerLink]="['/admin/admin-tickets']" routerLinkActive="active">Gestion des Tickets</a>
+      </li>
+      <li (click)="setActive('users')">
+        <a [routerLink]="['/admin/users']" routerLinkActive="active">Gestion des Comptes</a>
+      </li>
+    </ul>
+    <div *ngIf="activeSection === 'equipments'" class="sub-menu">
+      <p>Équipements</p>
+    </div>
+    <div *ngIf="activeSection === 'pannes'" class="sub-menu">
+      <p>Pannes</p>
+    </div>
+    <div *ngIf="activeSection === 'admin-tickets'" class="sub-menu">
+      <p>Tickets</p>
+    </div>
+    <div *ngIf="activeSection === 'users'" class="sub-menu">
+      <p>Comptes</p>
+    </div>
+  </div>
+  <div class="content">
+    <div class="welcome-section">
+      <h1>Welcome to Admin Dashboard</h1>
+      <div class="stats-container">
+        <div class="stat-card">
+          <h3>Total Équipements</h3>
+          <p>{{ totalEquipments }}</p>
+        </div>
+        <div class="stat-card">
+          <h3>Total Pannes</h3>
+          <p>{{ totalPannes }}</p>
+        </div>
+        <div class="stat-card">
+          <h3>Total Tickets</h3>
+          <p>{{ totalTickets }}</p>
+        </div>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+
+  <div *ngIf="showAdminInfo" class="modal-overlay">
+    <div class="modal">
+      <h3>Admin Information</h3>
+      <p><strong>Nom:</strong> {{ adminProfile?.nom }}</p>
+      <p><strong>Email:</strong> {{ adminProfile?.email }}</p>
+      <button (click)="closeAdminInfo()" class="close-button">Close</button>
+    </div>
+  </div>
+</div>

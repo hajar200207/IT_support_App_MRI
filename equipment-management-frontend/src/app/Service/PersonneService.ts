@@ -93,4 +93,11 @@ export class PersonneService {
   getAllUsers(): Observable<Personne[]> {
     return this.http.get<Personne[]>(`${this.apiUrl}/all`);
   }
+  deleteUser(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
+  }
+
+  updateUser(id: number, user: Personne): Observable<Personne> {
+    return this.http.put<Personne>(`${this.apiUrl}/update/${id}`, user);
+  }
 }

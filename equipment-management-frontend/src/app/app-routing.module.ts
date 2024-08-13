@@ -20,6 +20,9 @@ import {HomeComponent} from "./home/home.component";
 import {ContactComponent} from "./contact/contact.component";
 import {AboutUsComponent} from "./about-us/about-us.component";
 import {ServicesComponent} from "./services/services.component";
+import {AdminAccountsComponent} from "./admin-accounts/admin-accounts.component";
+import {AdminUsersComponent} from "./admin-users/admin-users.component";
+import {EditUserComponent} from "./edit-user/edit-user.component";
 
 const routes: Routes = [
   { path: 'user-dashboard', component: UserDashboardComponent },
@@ -46,6 +49,22 @@ const routes: Routes = [
   { path: 'services', component: ServicesComponent },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'admin', component: AdminDashboardComponent, children: [
+      { path: 'equipments', component: EquipmentListComponent },
+      { path: 'pannes', component: PanneListComponent },
+      { path: 'admin-tickets', component: TicketListComponent },
+      { path: '', redirectTo: 'equipments', pathMatch: 'full' },
+      { path: 'accounts', component: AdminAccountsComponent },
+      { path: 'users', component: AdminUsersComponent },
+      { path: 'edit-user/:id', component: EditUserComponent },
+      { path: 'pannes/new', component: PanneFormComponent },
+      { path: 'pannes/edit/:id', component: PanneFormComponent },
+      { path: 'pannes/detail/:id', component: PanneDetailComponent },
+      { path: 'equipments/new', component: EquipmentFormComponent },
+      { path: 'equipments/edit/:id', component: EquipmentFormComponent },
+
+    ]},
+  { path: '**', redirectTo: 'admin' }
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Panne } from '../../models/Panne.model';
+import {EtatPanne, Panne} from '../../models/Panne.model';
 import { PanneService } from '../../Service/Panne.Service';
 
 @Component({
@@ -9,6 +9,9 @@ import { PanneService } from '../../Service/Panne.Service';
 })
 export class PanneListComponent implements OnInit {
   pannes: Panne[] = [];
+  keyword: string = '';
+  etatPanne: EtatPanne | '' = '';
+  etatPanneOptions: string[] = Object.values(EtatPanne);
 
   constructor(private panneService: PanneService) {}
 
@@ -20,9 +23,6 @@ export class PanneListComponent implements OnInit {
     this.panneService.getAllPannes().subscribe((data) => {
       this.pannes = data.map(panne => {
         // Convertir les dates au format Date
-        if (panne.datePanne) {
-          panne.datePanne = new Date(panne.datePanne);
-        }
         return panne;
       });
     });
@@ -35,5 +35,15 @@ export class PanneListComponent implements OnInit {
       });
     }
   }
+  searchByDescription(): void {
+    this.panneService.searchPannesByDescription(this.keyword).subscribe((data) => {
+      this.pannes = data;
+    });
+  }
 
+  searchByEtat(): void {
+    this.panneService.searchPannesByEtat(this.etatPanne).subscribe((data) => {
+      this.pannes = data;
+    });
+  }
 }

@@ -1,0 +1,27 @@
+<p>edit-user works!</p>
+<div class="edit-user-container">
+  <h2>Edit User</h2>
+  <form (ngSubmit)="updateUser()">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="user.email" name="email" required />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input matInput [(ngModel)]="user.nom" name="firstName" required />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input matInput [(ngModel)]="user.prenom" name="lastName" required />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Role</mat-label>
+      <mat-select [(ngModel)]="user.role" name="role">
+        <mat-option value="ROLE_USER">User</mat-option>
+        <mat-option value="ROLE_ADMIN">Admin</mat-option>
+        <mat-option value="ROLE_TECHNICIEN">Technician</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Update User</button>
+  </form>
+</div>

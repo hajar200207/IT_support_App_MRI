@@ -46,7 +46,7 @@ export class TicketService {
     return this.http.put<string>(
       `${this.apiUrl}/update-status/${technicienId}/${ticketId}`,
       { etatTicket },
-      { headers, responseType: 'text' as 'json' }  // Explicitly set the responseType as 'text'
+      { headers, responseType: 'text' as 'json' }
     );
   }
 
@@ -56,5 +56,9 @@ export class TicketService {
 
   assignTicket(ticketId: number, technicienId: number): Observable<Ticket> {
     return this.http.put<Ticket>(`${this.apiUrl}/assign/${ticketId}?technicienId=${technicienId}`, this.httpOptions);
+  }
+
+  getTotalTickets(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/total`);
   }
 }

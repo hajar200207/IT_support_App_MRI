@@ -1,0 +1,9 @@
+<p>admin-accounts works!</p>
+<div class="admin-accounts">
+  <h2>Gestion des Comptes</h2>
+  <ul>
+    <li *ngFor="let user of users">
+      {{ user.nom }} {{ user.prenom }} - {{ user.email }}
+    </li>
+  </ul>
+</div>

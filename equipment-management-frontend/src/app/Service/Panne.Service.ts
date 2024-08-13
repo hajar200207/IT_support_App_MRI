@@ -85,4 +85,8 @@ export class PanneService {
   }
 
 
+
+  getTotalPannes(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/total`);
+  }
 }
