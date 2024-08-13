@@ -73,13 +73,23 @@ public class TicketController {
             dto.setDescription(ticket.getDescription());
             dto.setEtatTicket(String.valueOf(ticket.getEtatTicket()));
             dto.setUserId(ticket.getUser().getId());
-            if(!(ticket.getTechnicien().getId() == null)){
+
+            if (ticket.getTechnicien() != null) {
                 dto.setTechnicienId(ticket.getTechnicien().getId());
+            } else {
+                dto.setTechnicienId(null); // or some default value, if required
             }
-            dto.setPanneId(ticket.getPanne().getId());
+
+            if (ticket.getPanne() != null) {
+                dto.setPanneId(ticket.getPanne().getId());
+            } else {
+                dto.setPanneId(null); // or some default value, if required
+            }
+
             return dto;
         }).collect(Collectors.toList());
     }
+
 
     @GetMapping("/total")
     public ResponseEntity<Long> getTotalTickets() {
