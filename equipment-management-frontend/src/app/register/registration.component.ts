@@ -52,7 +52,7 @@ export class RegistrationComponent implements OnInit {
 
       this.srv.register(formData).subscribe(
         () => {
-          this.route.navigateByUrl("login");
+          this.route.navigateByUrl("admin/users");
         }
       );
 

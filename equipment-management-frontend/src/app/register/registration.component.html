@@ -1,4 +1,4 @@
-<div class="registration-container">
+<!--<div class="registration-container">
   <form [formGroup]="registreForm" (ngSubmit)="register()">
     <div>
       <label for="role">Role:</label>
@@ -23,7 +23,7 @@
       <input id="username" type="text" formControlName="username" required>
     </div>
 
-    <!-- Display fonction field if role is USER -->
+    Display fonction field if role is USER
     <div *ngIf="registreForm.get('role')?.value === 'ROLE_USER'">
       <label for="fonction">Fonction:</label>
       <input id="fonction" type="text" formControlName="fonction">
@@ -37,5 +37,47 @@
     <input id="type" type="hidden" formControlName="type">
 
     <button type="submit" [disabled]="!registreForm.valid">Register</button>
+  </form>
+</div>-->
+<div class="registration-container">
+  <form [formGroup]="registreForm" (ngSubmit)="register()">
+    <div class="form-group">
+      <label for="role"><i class="fas fa-user-tag"></i> Role:</label>
+      <select id="role" formControlName="role" required>
+        <option value="" disabled>Select Role</option>
+        <option *ngFor="let role of Roles" [value]="role">{{ role }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+      <input id="email" type="email" formControlName="email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="password"><i class="fas fa-lock"></i> Password:</label>
+      <input id="password" type="password" formControlName="motDePasse" required>
+    </div>
+
+    <div class="form-group">
+      <label for="username"><i class="fas fa-user"></i> Username:</label>
+      <input id="username" type="text" formControlName="username" required>
+    </div>
+
+    <div class="form-group" *ngIf="registreForm.get('role')?.value === 'ROLE_USER'">
+      <label for="fonction"><i class="fas fa-briefcase"></i> Fonction:</label>
+      <input id="fonction" type="text" formControlName="fonction">
+    </div>
+
+    <div class="form-group" *ngIf="registreForm.get('role')?.value === 'ROLE_TECHNICIEN'">
+      <label for="specialite"><i class="fas fa-tools"></i> Specialité:</label>
+      <input id="specialite" type="text" formControlName="specialite">
+    </div>
+
+    <input id="type" type="hidden" formControlName="type">
+
+    <button type="submit" class="submit-btn" [disabled]="!registreForm.valid">
+      <i class="fas fa-user-plus"></i> Register
+    </button>
   </form>
 </div>

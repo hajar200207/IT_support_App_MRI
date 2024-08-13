@@ -1,0 +1,97 @@
+/* Container Styling */
+.registration-container {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f4f8; /* Light background color */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Title Styling */
+.title {
+  color: #1e3a8a; /* Dark blue text color */
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+/* Form Styling */
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #1e3a8a;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+input, select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #1e3a8a;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #fbbf24;
+  box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.2);
+}
+
+/* Submit Button Styling */
+.submit-btn {
+  background-color: #fbbf24; /* Gold background color */
+  color: #1e3a8a; /* Dark blue text color */
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.submit-btn:hover {
+  background-color: #f59e0b; /* Slightly darker gold on hover */
+}
+
+.submit-btn:active {
+  transform: scale(0.98);
+}
+
+/* Animation for Form */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive styles */
+@media (max-width: 480px) {
+  .registration-container {
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  input, select, .submit-btn {
+    font-size: 16px; /* Prevents zoom on mobile devices */
+  }
+}
+
+/* Icon styles */
+.fas {
+  margin-right: 5px;
+  color: #1e3a8a; /* Dark blue icon color */
+}

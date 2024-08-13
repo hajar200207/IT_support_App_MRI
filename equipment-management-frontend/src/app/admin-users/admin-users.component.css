@@ -1,12 +1,134 @@
-/* admin-users.component.css */
-.admin-users {
+/* Container Styling */
+.admin-users-container {
   padding: 20px;
+  background-color: #fbbf24; /* Background color */
+  border-radius: 8px;
 }
 
-.admin-users table {
+/* Header Styling */
+h2 {
+  color: #1e3a8a; /* Header color */
+  font-size: 24px;
+}
+
+/* Table Styling */
+.admin-users-table {
   width: 100%;
+  border-collapse: collapse;
+  overflow-x: auto; /* Allow horizontal scrolling on small screens */
 }
 
-.admin-users button {
-  margin-right: 10px;
+.admin-users-table thead {
+  background-color: #1e3a8a; /* Header background color */
+  color: white;
+}
+
+.admin-users-table th, .admin-users-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.admin-users-table tr:nth-child(even) {
+  background-color: #f2f2f2; /* Alternating row color */
+}
+
+/* Action Buttons Styling */
+.admin-action-button {
+  padding: 8px 12px;
+  margin-right: 5px;
+  color: white;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.admin-action-button i {
+  margin-right: 5px;
+}
+
+.btn-info.admin-action-button {
+  background-color: #1e3a8a; /* Info button color */
+}
+
+.btn-danger.admin-action-button {
+  background-color: #e53e3e; /* Danger button color */
+}
+
+.admin-action-button:hover {
+  opacity: 0.8; /* Hover effect */
+}
+
+/* No Results Styling */
+.no-results {
+  margin-top: 20px;
+  color: #e53e3e;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .admin-users-container {
+    flex-direction: column;
+  }
+
+  .admin-users-table {
+    width: 100%; /* Ensure full width on small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 20px;
+  }
+
+  .admin-users-table th, .admin-users-table td {
+    padding: 8px;
+  }
+
+  .admin-action-button {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+.add-button {
+  display: inline-flex;
+  align-items: center;
+  background-color: #1e3a8a; /* Button background color */
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.add-button i {
+  margin-right: 5px;
+}
+
+.add-button:hover {
+  background-color: #fbbf24; /* Button hover color */
+  color: #1e3a8a; /* Button hover text color */
+}
+
+
+.add-user-button:hover {
+  background-color: #fbbf24; /* Button hover color */
+  color: #1e3a8a; /* Button hover text color */
+}
+/* Styling for the "Supprimer" button */
+.delete-button {
+  background-color: #1e3a8a; /* Red background color */
+  color: white; /* White text color */
+  border-radius: 4px; /* Rounded corners */
+  padding: 8px 16px; /* Padding inside the button */
+  border: none; /* Remove default border */
+  cursor: pointer; /* Change cursor on hover */
+  font-weight: bold; /* Bold text */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.delete-button:hover {
+  background-color: #1e3a8a; /* Darker red on hover */
+  transform: scale(1.05); /* Slightly enlarge the button on hover */
+  color: #fbbf24; /* Change text color on hover */
 }

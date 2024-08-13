@@ -1,0 +1,76 @@
+/* General Styling for the Container */
+.admin-tickets-container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fbbf24; /* Gold background */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Title Styling */
+.title {
+  color: #1e3a8a; /* Dark blue text */
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+thead {
+  background-color: #1e3a8a; /* Dark blue background for header */
+  color: #1e3a8a;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #1e3a8a;
+}
+
+tr:nth-child(even) {
+  background-color: #1e3a8a; /* Alternating row color */
+}
+
+/* Button Styling */
+button {
+  padding: 8px 12px;
+  background-color: #1e3a8a; /* Dark blue background */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #fbbf24; /* Gold background on hover */
+  color: #1e3a8a; /* Dark blue text on hover */
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Form Field Styling */
+mat-form-field {
+  margin-bottom: 10px;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Add fade-in animation to the container */
+.admin-tickets-container {
+  animation: fadeIn 0.5s ease-out;
+}

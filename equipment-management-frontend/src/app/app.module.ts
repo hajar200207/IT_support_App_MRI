@@ -35,6 +35,8 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -76,6 +78,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatSelectModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatIconModule,
+    MatButtonModule,
 
   ],
   providers: [

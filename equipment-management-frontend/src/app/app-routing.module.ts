@@ -62,7 +62,12 @@ const routes: Routes = [
       { path: 'pannes/detail/:id', component: PanneDetailComponent },
       { path: 'equipments/new', component: EquipmentFormComponent },
       { path: 'equipments/edit/:id', component: EquipmentFormComponent },
+      { path: 'users/register', component: RegistrationComponent },    ]},
 
+      { path: 'user', component: AdminDashboardComponent, children: [
+      { path: 'pannes/detail/:id', component: PanneDetailComponent },
+      { path: 'create-ticket', component: CreateTicketComponent },
+      { path: 'panne-equipment', component: PanneEquipmentListComponent },
     ]},
   { path: '**', redirectTo: 'admin' }
 ];

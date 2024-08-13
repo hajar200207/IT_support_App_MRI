@@ -1,31 +1,60 @@
-<div>
-  <h1>Admin Tickets</h1>
+<div class="admin-tickets-container">
+  <h1 class="title">Admin Tickets</h1>
 
-  <table>
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Description</th>
-      <th>Status</th>
-      <th>User ID</th>
-      <th>Technician ID</th>
-      <th>Panne ID</th>
-      <th>Update Technician</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let ticket of tickets">
-      <td>{{ ticket.id }}</td>
-      <td>{{ ticket.description }}</td>
-      <td>{{ ticket.etatTicket }}</td>
-      <td>{{ ticket.userId }}</td>
-      <td>{{ ticket.technicienId }}</td>
-      <td>{{ ticket.panneId }}</td>
-      <td>
-        <input [(ngModel)]="ticket.newTechnicianId" placeholder="Technician ID" type="number"/>
-        <button (click)="updateTechnician(ticket)">Update</button>
+  <table mat-table [dataSource]="tickets" class="mat-elevation-z8">
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let ticket">{{ ticket.id }}</td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let ticket">{{ ticket.description }}</td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let ticket">{{ ticket.etatTicket }}</td>
+    </ng-container>
+
+    <!-- User ID Column -->
+    <ng-container matColumnDef="userId">
+      <th mat-header-cell *matHeaderCellDef>User ID</th>
+      <td mat-cell *matCellDef="let ticket">{{ ticket.userId }}</td>
+    </ng-container>
+
+    <!-- Technician ID Column -->
+    <ng-container matColumnDef="technicianId">
+      <th mat-header-cell *matHeaderCellDef>Technician ID</th>
+      <td mat-cell *matCellDef="let ticket">{{ ticket.technicienId }}</td>
+    </ng-container>
+
+    <!-- Panne ID Column -->
+    <ng-container matColumnDef="panneId">
+      <th mat-header-cell *matHeaderCellDef>Panne ID</th>
+      <td mat-cell *matCellDef="let ticket">{{ ticket.panneId }}</td>
+    </ng-container>
+
+    <!-- Update Technician Column -->
+    <ng-container matColumnDef="updateTechnician">
+      <th mat-header-cell *matHeaderCellDef>Update Technician</th>
+      <td mat-cell *matCellDef="let ticket">
+        <mat-form-field appearance="fill">
+          <mat-label>Technician ID</mat-label>
+          <input matInput [(ngModel)]="ticket.newTechnicianId" type="number" placeholder="Technician ID"/>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="updateTechnician(ticket)">
+          <mat-icon>update</mat-icon> Update
+        </button>
       </td>
-    </tr>
-    </tbody>
+    </ng-container>
+
+    <!-- Header and Row Definitions -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 </div>

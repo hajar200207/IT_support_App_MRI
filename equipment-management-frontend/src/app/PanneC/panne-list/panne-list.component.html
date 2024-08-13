@@ -39,13 +39,16 @@
 <div class="panne-container">
   <!-- Search Section -->
     <div class="panne-search-container">
+
+      <a routerLink="new" class="add-button">
+        <i class="fas fa-plus"></i> Add New Panne
+      </a>
       <h2>Search Pannes</h2>
       <div class="search-bar">
         <!-- Search by Description -->
         <form (ngSubmit)="searchByDescription()" class="search-form">
           <div class="search-group">
             <label for="keyword" class="search-label">
-              <i class="fas fa-search"></i>
             </label>
             <input
               type="text"
@@ -65,7 +68,6 @@
         <form (ngSubmit)="searchByEtat()" class="search-form">
           <div class="search-group">
             <label for="etatPanne" class="search-label">
-              <i class="fas fa-filter"></i>
             </label>
             <select
               id="etatPanne"

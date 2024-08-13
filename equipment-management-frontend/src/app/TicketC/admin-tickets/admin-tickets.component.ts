@@ -10,6 +10,7 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
 })
 export class AdminTicketsComponent implements OnInit {
   tickets: TicketDTO[] = [];
+  displayedColumns: string[] = ['id', 'description', 'status', 'userId', 'technicianId', 'panneId', 'updateTechnician'];
 
   constructor(private ticketService: TicketService) {}
 
