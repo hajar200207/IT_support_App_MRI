@@ -1,0 +1,53 @@
+/* General Container Styling */
+.container {
+  padding: 20px;
+  background-color: #fbbf24; /* Background color */
+  border-radius: 8px;
+}
+
+/* Header Styling */
+h2 {
+  color: #1e3a8a; /* Header color */
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Table Styling */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead {
+  background-color: #1e3a8a; /* Header background color */
+  color: white;
+}
+
+.table th, .table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f2f2f2; /* Alternating row color */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #ffffff; /* Odd row background color */
+}
+
+/* Select Dropdown Styling */
+.status-select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: #ffffff;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .table {
+    font-size: 14px;
+  }
+}

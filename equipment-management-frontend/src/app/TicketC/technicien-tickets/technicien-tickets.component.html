@@ -1,4 +1,4 @@
-<!-- technicien-tickets.component.html -->
+<!--
 <div *ngIf="tickets.length === 0">
   <p>Aucun ticket disponible.</p>
 </div>
@@ -23,3 +23,43 @@
     </select>
   </li>
 </ul>
+-->
+<div *ngIf="tickets.length === 0">
+  <p>Aucun ticket disponible.</p>
+</div>
+<div *ngIf="user">
+  <h2>Profil Utilisateur</h2>
+  <p><strong>ID:</strong> {{ user.id }}</p>
+  <p><strong>Email:</strong> {{ user.email }}</p>
+  <p><strong>Rôle:</strong> {{ user.role }}</p>
+</div>
+<div *ngIf="tickets.length > 0">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Description</th>
+      <th>Date de Création</th>
+      <th>État</th>
+      <th>Changer le Statut</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let ticket of tickets">
+      <td>{{ ticket.id }}</td>
+      <td>{{ ticket.description }}</td>
+      <td>{{ ticket.dateCreation | date }}</td>
+      <td>{{ ticket.etatTicket }}</td>
+      <td>
+        <select (change)="updateStatus(ticket.id, $event)" class="status-select">
+          <option value="" disabled selected>Changer le statut</option>
+          <option value="OUVERT">OUVERT</option>
+          <option value="EN_COURS">EN_COURS</option>
+          <option value="RESOLU">RESOLU</option>
+          <option value="FERME">FERME</option>
+        </select>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
