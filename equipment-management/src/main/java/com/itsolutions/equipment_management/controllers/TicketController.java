@@ -95,4 +95,10 @@ public class TicketController {
     public ResponseEntity<Long> getTotalTickets() {
         return ResponseEntity.ok(ticketService.getTotalTickets());
     }
+    @PreAuthorize("hasRole('TECHNICIEN')")
+    @GetMapping("/count/technicien/{technicienId}")
+    public ResponseEntity<Long> countTicketsByTechnicienId(@PathVariable Long technicienId) {
+        Long count = ticketService.countTicketsByTechnicienId(technicienId);
+        return ResponseEntity.ok(count);
+    }
 }

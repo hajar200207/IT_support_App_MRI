@@ -57,4 +57,7 @@ public class TicketService {
     public Long getTotalTickets() {
         return  ticketRepository.count();
     }
+    public Long countTicketsByTechnicienId(Long technicienId) {
+        return ticketRepository.countByTechnicienId(technicienId);
+    }
 }
