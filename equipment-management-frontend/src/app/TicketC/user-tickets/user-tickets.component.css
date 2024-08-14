@@ -1,0 +1,105 @@
+/* General Styling */
+div {
+  padding: 20px;
+  background-color: #fbbf24; /* Background color */
+  border-radius: 8px;
+}
+
+h2 {
+  color: #1e3a8a; /* Header color */
+  font-size: 24px;
+}
+
+/* Input and Search Bar Styling */
+input {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 2px solid #1e3a8a; /* Border color */
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+thead {
+  background-color: #1e3a8a; /* Header background color */
+  color: white;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2; /* Alternating row color */
+}
+
+/* Button Styling */
+.add-button {
+  display: inline-flex;
+  align-items: center;
+  background-color: #1e3a8a; /* Button background color */
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.add-button i {
+  margin-right: 5px;
+}
+
+.add-button:hover {
+  background-color: #fbbf24; /* Button hover color */
+  color: #1e3a8a; /* Button hover text color */
+}
+
+/* Button Styling */
+button {
+  padding: 8px 12px;
+  background-color: #1e3a8a; /* Button background color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #fbbf24; /* Button hover color */
+  color: #1e3a8a; /* Button hover text color */
+}
+
+a {
+  color: #1e3a8a; /* Link color */
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+a:hover {
+  background-color: #fbbf24; /* Link hover background color */
+  color: #1e3a8a; /* Link hover text color */
+}
+
+/* Animation for Table Rows */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+tr {
+  animation: fadeIn 0.5s ease-in;
+}

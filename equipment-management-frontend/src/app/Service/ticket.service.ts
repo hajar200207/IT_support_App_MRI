@@ -61,4 +61,7 @@ export class TicketService {
   getTotalTickets(): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/total`);
   }
+  countTicketsByTechnicienId(technicienId: number): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/count/technicien/${technicienId}`);
+  }
 }

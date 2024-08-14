@@ -1,8 +1,8 @@
-<div class="container mt-5">
+<!--<div class="container mt-5">
   <h2>Create Ticket</h2>
 
   <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
-    <!-- Description Field -->
+    Description Field
     <div class="form-group mb-3">
       <label for="description">Description</label>
       <textarea
@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <!-- Etat Ticket Field -->
+
     <div class="form-group mb-3">
       <label for="etatTicket">Ticket Status</label>
       <select
@@ -33,7 +33,7 @@
       </select>
     </div>
 
-    <!-- User ID Field -->
+
     <div class="form-group mb-3">
       <label for="userId">User ID</label>
       <input
@@ -49,7 +49,7 @@
       </div>
     </div>
 
-    <!-- Panne ID Field -->
+
     <div class="form-group mb-3">
       <label for="panneId">Panne ID</label>
       <input
@@ -65,10 +65,72 @@
       </div>
     </div>
 
-    <!-- Hidden User Type Field -->
+
     <input type="hidden" formControlName="userType" />
 
-    <!-- Submit Button -->
+
     <button type="submit" class="btn btn-primary" [disabled]="ticketForm.invalid">Create Ticket</button>
   </form>
 </div>
+-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+<div class="ticket-form">
+  <h2 class="title">
+    <i class="fas fa-plus-circle"></i>
+    Create Ticket
+  </h2>
+
+  <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()" class="form">
+    <!-- Description Field -->
+    <div class="form-group">
+      <label for="description"><i class="fas fa-align-left"></i> Description:</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        class="form-control"
+        rows="3"
+        placeholder="Enter ticket description"
+        required
+      ></textarea>
+    </div>
+
+    <!-- Ticket Status Field -->
+    <div class="form-group">
+      <label for="etatTicket"><i class="fas fa-tachometer-alt"></i> Ticket Status:</label>
+      <select
+        id="etatTicket"
+        formControlName="etatTicket"
+        class="form-select"
+      >
+        <option [ngValue]="EtatTicket.OUVERT">Open</option>
+        <option [ngValue]="EtatTicket.EN_COURS">In Progress</option>
+        <option [ngValue]="EtatTicket.RESOLU">Resolved</option>
+        <option [ngValue]="EtatTicket.FERME">Closed</option>
+      </select>
+    </div>
+
+    <!-- Panne ID Field -->
+    <div class="form-group">
+      <label for="panneId"><i class="fas fa-hammer"></i> Panne ID:</label>
+      <select
+        id="panneId"
+        formControlName="panneId"
+        class="form-select"
+        required
+      >
+        <option *ngFor="let panne of panneEquipments" [value]="panne.id">
+          {{ panne.equipment.nom }} <!-- Adjust according to your PanneEquipment model -->
+        </option>
+      </select>
+    </div>
+    <input type="hidden" formControlName="userId" />
+    <input type="hidden" formControlName="userType" />
+    <!-- Submit Button -->
+    <button type="submit" class="submit-btn" [disabled]="ticketForm.invalid">
+      <i class="fas fa-save"></i>
+      Create Ticket
+    </button>
+  </form>
+</div>
+

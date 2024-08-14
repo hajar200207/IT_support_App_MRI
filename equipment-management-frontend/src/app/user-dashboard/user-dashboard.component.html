@@ -1,8 +1,8 @@
-<p>user-dashboard works!</p>
+<!--<p>user-dashboard works!</p>
 
 <nav>
-  <ul>
-    <!-- Autres liens de navigation -->
+<ul>
+ Autres liens de navigation
     <li><a routerLink="/historique-pannes">Historique des Pannes</a></li>
   </ul>
 </nav>
@@ -42,3 +42,52 @@
   </table>
 </div>
 <app-panne-equipment-list></app-panne-equipment-list>
+-->
+<div class="user-dashboard">
+  <div class="sidebar">
+    <h2>User Dashboard</h2>
+    <button (click)="logout()" class="logout-button">Log Out</button>
+    <button (click)="openUserInfo()" class="info-button">
+      <i class="fa fa-user"></i> Voir Info Utilisateur
+    </button>
+    <ul>
+      <li (click)="setActive('create-ticket')">
+        <a [routerLink]="['/user/create-ticket']" routerLinkActive="active">Créer un Ticket</a>
+      </li>
+      <li (click)="setActive('my-tickets')">
+        <a [routerLink]="['/user/my-tickets']" routerLinkActive="active">Voir mes Tickets</a>
+      </li>
+      <li (click)="setActive('panne-history')">
+        <a [routerLink]="['/user/panne-equipment']" routerLinkActive="active">Historique des Pannes</a>
+      </li>
+    </ul>
+    <div *ngIf="activeSection === 'create-ticket'" class="sub-menu">
+      <p>Créer un Ticket</p>
+    </div>
+    <div *ngIf="activeSection === 'my-tickets'" class="sub-menu">
+      <p>Mes Tickets</p>
+
+    </div>
+    <div *ngIf="activeSection === 'panne-history'" class="sub-menu">
+      <p>Historique des Pannes</p>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="welcome-section">
+      <h1>Bienvenue sur le tableau de bord utilisateur</h1>
+      <h3>Bonjour, {{ user?.nom }}</h3>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+
+  <div *ngIf="showUserInfo" class="modal-overlay">
+    <div class="modal">
+      <h3>Informations Utilisateur</h3>
+      <p><strong>Nom:</strong> {{ user?.nom }}</p>
+      <p><strong>Email:</strong> {{ user?.email }}</p>
+      <button (click)="closeUserInfo()" class="close-button">Fermer</button>
+    </div>
+  </div>
+
+</div>

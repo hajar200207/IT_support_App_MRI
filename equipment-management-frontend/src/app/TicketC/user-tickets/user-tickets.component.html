@@ -1,0 +1,51 @@
+<!--<p>user-tickets works!</p>
+<div *ngIf="user">
+  <h2>Bienvenue, {{ user.nom }}</h2>
+  <h3>Vos Tickets</h3>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Description</th>
+      <th>État</th>
+      <th>Panne ID</th>
+      <th>Technicien ID</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let ticket of tickets">
+      <td>{{ ticket.id }}</td>
+      <td>{{ ticket.description }}</td>
+      <td>{{ ticket.etatTicket }}</td>
+      <td>{{ ticket.panneId}}</td>
+      <td>{{ ticket.technicienId }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+-->
+<div>
+  <h2>My Tickets</h2>
+  <a routerLink="create-ticket" class="add-button">
+    <i class="fas fa-plus"></i> Create New Ticket
+  </a>
+
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Panne ID</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let ticket of tickets">
+      <td>{{ ticket.id }}</td>
+      <td>{{ ticket.description }}</td>
+      <td>{{ ticket.etatTicket }}</td>
+      <td>{{ ticket.panneId }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

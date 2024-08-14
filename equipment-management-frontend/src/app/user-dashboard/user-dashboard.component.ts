@@ -3,6 +3,7 @@ import { Personne } from '../models/personne.model';
 import { PersonneService } from '../Service/PersonneService';
 import { TicketService } from '../Service/ticket.service';
 import { TicketDTO } from '../DTO/TicketDTO';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-dashboard',
@@ -12,10 +13,13 @@ import { TicketDTO } from '../DTO/TicketDTO';
 export class UserDashboardComponent implements OnInit {
   user: Personne | null = null;
   tickets: TicketDTO[] = [];
+  showUserInfo: boolean = false;
+  activeSection: string = '';
 
   constructor(
     private personneService: PersonneService,
-    private ticketService: TicketService
+    private ticketService: TicketService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -35,5 +39,20 @@ export class UserDashboardComponent implements OnInit {
     this.ticketService.getTicketsByUserId(userId).subscribe(tickets => {
       this.tickets = tickets;
     });
+  }
+  openUserInfo(): void {
+    this.showUserInfo = true;
+  }
+
+  closeUserInfo(): void {
+    this.showUserInfo = false;
+  }
+
+  setActive(section: string): void {
+    this.activeSection = section;
+  }
+
+  logout(): void {
+    this.router.navigate(['/login']);
   }
 }

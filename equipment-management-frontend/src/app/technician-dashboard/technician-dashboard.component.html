@@ -1,3 +1,38 @@
-<p>technician-dashboard works!</p><p>Technician Dashboard works!</p>
-<app-technicien-tickets></app-technicien-tickets>
+<div class="technician-dashboard">
+  <div class="sidebar">
+    <h2>Technician Dashboard</h2>
+    <button (click)="logout()" class="logout-button">Log Out</button>
+    <button (click)="openTechnicianInfo()" class="info-button">
+      <i class="fa fa-user"></i> Voir Mon Profil
+    </button>
+    <ul>
+      <li (click)="setActive('technician-tickets')">
+        <a [routerLink]="['/technicien/technician-tickets']" routerLinkActive="active">Voir Mes Tickets</a>
+      </li>
+    </ul>
+    <div *ngIf="activeSection === 'technician-tickets'" class="sub-menu">
+      <p>Mes Tickets</p>
+    </div>
+  </div>
+  <div class="content">
+    <div class="welcome-section">
+      <h1>Welcome to Technician Dashboard</h1>
+      <div class="stats-container">
+        <div class="stat-card">
+          <h3>Total Tickets Assignés</h3>
+          <p>{{ totalTechnicianTickets }}</p>
+        </div>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
 
+  <div *ngIf="showTechnicianInfo" class="modal-overlay">
+    <div class="modal">
+      <h3>Technician Information</h3>
+      <p><strong>Nom:</strong> {{ technicianProfile?.nom }}</p>
+      <p><strong>Email:</strong> {{ technicianProfile?.email }}</p>
+      <button (click)="closeTechnicianInfo()" class="close-button">Close</button>
+    </div>
+  </div>
+</div>

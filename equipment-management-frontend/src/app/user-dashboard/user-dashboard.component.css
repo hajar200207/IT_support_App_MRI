@@ -1,0 +1,106 @@
+.user-dashboard {
+  display: flex;
+  height: 100vh;
+  color: white;
+}
+
+.sidebar {
+  background-color: #1e3a8a; /* Dark blue */
+  padding: 20px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.sidebar h2 {
+  color: #fbbf24; /* Gold */
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block;
+  border-radius: 4px;
+}
+
+.sidebar ul li a.active,
+.sidebar ul li a:hover {
+  background-color: #fbbf24; /* Gold */
+  color: #1e3a8a; /* Dark blue */
+}
+
+.logout-button, .info-button {
+  background-color: #fbbf24; /* Gold */
+  color: #1e3a8a; /* Dark blue */
+  border: none;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.logout-button:hover,
+.info-button:hover {
+  background-color: #d9a023;
+}
+
+.content {
+  flex: 1;
+  background-color: #fbbf24;
+  padding: 30px;
+}
+
+.welcome-section h1 {
+  color: #1e3a8a; /* Dark blue */
+  font-size: 24px;
+}
+
+.welcome-section h3 {
+  color: #333;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.close-button {
+  background-color: #1e3a8a; /* Dark blue */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.close-button:hover {
+  background-color: #163366;
+}

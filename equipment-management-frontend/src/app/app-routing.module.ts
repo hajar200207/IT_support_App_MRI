@@ -23,6 +23,7 @@ import {ServicesComponent} from "./services/services.component";
 import {AdminAccountsComponent} from "./admin-accounts/admin-accounts.component";
 import {AdminUsersComponent} from "./admin-users/admin-users.component";
 import {EditUserComponent} from "./edit-user/edit-user.component";
+import {UserTicketsComponent} from "./TicketC/user-tickets/user-tickets.component";
 
 const routes: Routes = [
   { path: 'user-dashboard', component: UserDashboardComponent },
@@ -42,13 +43,15 @@ const routes: Routes = [
   { path: 'panne-equipment', component: PanneEquipmentListComponent },
   { path: 'create-ticket', component: CreateTicketComponent },
   { path: 'admin-tickets', component: AdminTicketsComponent },
-  { path: 'technicien-tickets', component: TechnicienTicketsComponent },
+  { path: 'technician-tickets', component: TechnicienTicketsComponent },
   { path: 'tickets', component: TicketListComponent },
   { path: 'home', component: HomeComponent },
   { path: '', component: HomeComponent },
   { path: 'services', component: ServicesComponent },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'contact', component: ContactComponent },
+  {  path : 'my-tickets', component : UserTicketsComponent},
+
   { path: 'admin', component: AdminDashboardComponent, children: [
       { path: 'equipments', component: EquipmentListComponent },
       { path: 'pannes', component: PanneListComponent },
@@ -62,14 +65,23 @@ const routes: Routes = [
       { path: 'pannes/detail/:id', component: PanneDetailComponent },
       { path: 'equipments/new', component: EquipmentFormComponent },
       { path: 'equipments/edit/:id', component: EquipmentFormComponent },
-      { path: 'users/register', component: RegistrationComponent },    ]},
-
-      { path: 'user', component: AdminDashboardComponent, children: [
-      { path: 'pannes/detail/:id', component: PanneDetailComponent },
-      { path: 'create-ticket', component: CreateTicketComponent },
-      { path: 'panne-equipment', component: PanneEquipmentListComponent },
+      { path: 'users/register', component: RegistrationComponent },
+      { path: '**', redirectTo: 'admin' }
     ]},
-  { path: '**', redirectTo: 'admin' }
+
+  { path: 'user', component: UserDashboardComponent, children: [
+      { path: 'create-ticket', component: CreateTicketComponent },
+      {  path : 'my-tickets', component : UserTicketsComponent},
+      { path: 'panne-equipment', component: PanneEquipmentListComponent },
+      { path: 'user/create-ticket', component: CreateTicketComponent },
+      { path: '**', redirectTo: 'user' }
+    ]},
+
+  { path: 'technicien', component: TechnicianDashboardComponent, children: [
+      { path: 'technician-tickets', component: TechnicienTicketsComponent },
+      { path: '**', redirectTo: 'technicien' }
+    ]},
+
 ];
 
 @NgModule({

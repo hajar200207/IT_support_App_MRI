@@ -37,6 +37,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import { UserTicketsComponent } from './TicketC/user-tickets/user-tickets.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import {MatButtonModule} from "@angular/material/button";
     FooterComponent,
     AdminAccountsComponent,
     AdminUsersComponent,
-    EditUserComponent
+    EditUserComponent,
+    UserTicketsComponent
   ],
   imports: [
     BrowserModule,
