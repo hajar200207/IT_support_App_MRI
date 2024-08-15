@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -34,4 +33,3 @@ public class PanneEquipment {
 
     private LocalDateTime dateOfLink;
 }
-

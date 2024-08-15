@@ -15,9 +15,6 @@ public interface PanneRepository extends JpaRepository<Panne, Long> {
     List<Panne> findByDescriptionContainingIgnoreCase(String keyword);
     List<Panne> findByEtatPanne(EtatPanne etatPanne);
 
-//
-//    @Query("SELECT p FROM Panne p JOIN FETCH p.equipements")
-//    List<Panne> findAllPannesWithEquipments();
 
 
 }

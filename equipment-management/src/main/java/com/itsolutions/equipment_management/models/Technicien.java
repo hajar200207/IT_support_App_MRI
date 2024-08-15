@@ -1,7 +1,6 @@
 package com.itsolutions.equipment_management.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -15,9 +14,8 @@ import java.util.List;
 @Entity
 @Table(name = "Technicien")
 @JsonIgnoreProperties(ignoreUnknown = true)
-
 @PrimaryKeyJoinColumn(name = "id")
-public class Technicien extends Personne {
+public class  Technicien extends Personne {
 
     @Column(name = "specialite")
     private String specialite;
@@ -31,5 +29,3 @@ public class Technicien extends Personne {
         this.setRole(Role.ROLE_TECHNICIEN);
     }
 }
-
-

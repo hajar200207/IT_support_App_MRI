@@ -41,7 +41,9 @@ public class EquipmentService {
     }
 
 
-        public long getTotalEquipments() {
+
+
+    public long getTotalEquipments() {
             return equipmentRepository.count();
         }
 }

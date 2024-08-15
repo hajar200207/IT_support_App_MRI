@@ -107,4 +107,5 @@ public class PanneController {
     public ResponseEntity<Long> getTotalPannes() {
         return ResponseEntity.ok(panneService.getTotalPannes());
     }
+
 }
