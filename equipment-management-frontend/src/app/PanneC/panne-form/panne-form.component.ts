@@ -37,7 +37,6 @@ export class PanneFormComponent implements OnInit {
       this.isEditing = true;
       this.panneService.getPanneById(Number(panneId)).subscribe((panne) => {
         this.panne = panne;
-        // Remplir les IDs des équipements sélectionnés
         this.selectedEquipmentIds = panne.equipmentIds || [];
       });
     }
@@ -56,10 +55,8 @@ export class PanneFormComponent implements OnInit {
 
   onCheckboxChange(event: any, equipmentId: number): void {
     if (event.target.checked) {
-      // Ajouter l'équipement sélectionné
       this.selectedEquipmentIds.push(equipmentId);
     } else {
-      // Retirer l'équipement désélectionné
       this.selectedEquipmentIds = this.selectedEquipmentIds.filter(id => id !== equipmentId);
     }
   }
@@ -70,24 +67,20 @@ export class PanneFormComponent implements OnInit {
     if (this.isEditing) {
       this.panneService.updatePanne(this.panne.id, this.panne).subscribe(
         () => {
-          // Gestion du succès
           console.log('Panne mise à jour avec succès');
           this.router.navigate(['/pannes']);
         },
         (error) => {
-          // Gestion des erreurs
           console.error('Erreur lors de la mise à jour de la panne:', error);
         }
       );
     } else {
       this.panneService.reportPanne(this.panne).subscribe(
         () => {
-          // Gestion du succès
           console.log('Panne signalée avec succès');
           this.router.navigate(['admin/pannes']);
         },
         (error) => {
-          // Gestion des erreurs
           console.error('Erreur lors de la signalisation de la panne:', error);
         }
       );

@@ -20,6 +20,7 @@ export class EquipmentListComponent implements OnInit {
 
   loadEquipments(): void {
     this.equipmentService.getAllEquipments().subscribe(data => {
+
       this.equipments = data;
     });
   }
@@ -29,13 +30,12 @@ export class EquipmentListComponent implements OnInit {
         this.equipments = equipments;
       });
     } else {
-      this.loadEquipments(); // Reload the full list if search term is empty
+      this.loadEquipments();
     }
   }
   deleteEquipment(id?: number): void {
     if (id !== undefined) {
       this.equipmentService.deleteEquipment(id).subscribe(() => {
-        // Handle success
       });
     } else {
       console.error('ID is not defined');

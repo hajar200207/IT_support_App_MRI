@@ -27,7 +27,6 @@ export class TicketService {
   getAllTickets(): Observable<TicketDTO[]> {
     return this.http.get<TicketDTO[]>(`${this.apiUrl}/all`);
   }
-
   getTicketsByUserId(userId: number): Observable<TicketDTO[]> {
     return this.http.get<TicketDTO[]>(`${this.apiUrl}/user/${userId}`);
   }

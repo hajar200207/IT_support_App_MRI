@@ -10,43 +10,33 @@ import { PersonneService } from '../Service/PersonneService';
 export class LoginComponent {
   loginForm: FormGroup;
   errorMessage: string = '';
-  showLoginForm = false; // Contrôle l'affichage du formulaire de connexion
-  showHeart = false; // Contrôle l'affichage de l'icône cœur
+  showLoginForm = false;
+  showHeart = false;
 
   constructor(private fb: FormBuilder, private personneService: PersonneService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      motDePasse: ['', Validators.required],
-      type: ['', Validators.required]
+      motDePasse: ['', Validators.required]
     });
   }
 
   login(): void {
     if (this.loginForm.valid) {
-      const { email, motDePasse, type } = this.loginForm.value;
-      const loginData = {
-        email: email,
-        motDePasse: motDePasse,
-        type: type
-      };
+      const { email, motDePasse } = this.loginForm.value;
+      const loginData = { email, motDePasse };
+
       this.personneService.login(loginData).subscribe(
         response => {
-          if (this.mapRoleToType(response.role) !== type) {
-            this.errorMessage = `You are a ${response.role}. Please select the correct user type.`;
-            return;
-          }
           this.personneService.setToken(response.token);
           this.personneService.setCurrentUser({
             email: email,
             role: response.role,
             motDePasse: motDePasse,
-            type: type
           });
           this.personneService.redirectToDashboard();
         },
         error => {
           console.error('Login error', error);
-          this.errorMessage = 'Invalid credentials. Please try again.';
         }
       );
     }

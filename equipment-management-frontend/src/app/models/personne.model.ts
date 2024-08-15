@@ -4,7 +4,7 @@ export interface Personne {
   email: string;
   motDePasse: string;
   role?: Role;
-  type: string;
+  type ?: string;
   prenom?: string;
   nom?: string;
 

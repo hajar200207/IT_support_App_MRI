@@ -15,9 +15,26 @@
   background-color: #fbbf24;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+  margin-right: 10px;
+}
+
 .logo h1 {
-  font-size: 2.5rem;
-  color: #1e3a8a;
+  font-size: 1.5rem;
+  margin: 0;
+  color: #fff;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
 }
 
 .nav-links a {
@@ -25,6 +42,7 @@
   font-size: 1.2rem;
   color: #fff;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .nav-links .login-btn {
@@ -91,22 +109,73 @@
   25%, 75% { opacity: 1; }
 }
 
-.nav-links a {
-  cursor: pointer;
-}
-.logo {
-  display: flex;
-  align-items: center;
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo h1 {
+    font-size: 1.2rem;
+  }
+
+  .nav-links {
+    margin-top: 10px;
+  }
+
+  .nav-links a {
+    margin: 0 10px;
+    font-size: 1rem;
+  }
+
+  .hero-text h2 {
+    font-size: 2rem;
+  }
+
+  .hero-text p {
+    font-size: 1.2rem;
+  }
+
+  .hero-animation {
+    width: 80%;
+    height: 300px;
+  }
 }
 
-.logo img {
-  height: 50px;
-  width: auto;
-  margin-right: 10px;
-}
+@media (max-width: 480px) {
+  .header {
+    padding: 10px;
+  }
 
-.logo h1 {
-  font-size: 1.5rem;
-  margin: 0;
-  color: #fff;
+  .logo img {
+    height: 40px;
+  }
+
+  .logo h1 {
+    font-size: 1rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .nav-links a {
+    margin: 10px 0;
+    font-size: 1rem;
+  }
+
+  .hero-text h2 {
+    font-size: 1.5rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  .hero-animation {
+    width: 90%;
+    height: 200px;
+  }
 }

@@ -2,10 +2,11 @@
   display: flex;
   height: 100vh;
   color: white;
+  flex-direction: row;
 }
 
 .sidebar {
-  background-color: #1e3a8a; /* Dark blue */
+  background-color: #1e3a8a;
   padding: 20px;
   width: 250px;
   display: flex;
@@ -14,7 +15,7 @@
 }
 
 .sidebar h2 {
-  color: #fbbf24; /* Gold */
+  color: #fbbf24;
   margin-bottom: 20px;
 }
 
@@ -38,13 +39,13 @@
 
 .sidebar ul li a.active,
 .sidebar ul li a:hover {
-  background-color: #fbbf24; /* Gold */
-  color: #1e3a8a; /* Dark blue */
+  background-color: #fbbf24;
+  color: #1e3a8a;
 }
 
 .logout-button, .info-button {
-  background-color: #fbbf24; /* Gold */
-  color: #1e3a8a; /* Dark blue */
+  background-color: #fbbf24;
+  color: #1e3a8a;
   border: none;
   padding: 10px 15px;
   margin-bottom: 10px;
@@ -60,12 +61,12 @@
 
 .content {
   flex: 1;
-  background-color: #fbbf24;
+  background-color: white;
   padding: 30px;
 }
 
 .welcome-section h1 {
-  color: #1e3a8a; /* Dark blue */
+  color: #1e3a8a;
   font-size: 24px;
 }
 
@@ -86,13 +87,13 @@
 }
 
 .modal {
-  background: white;
+  background: #fbbf24;
   padding: 20px;
   border-radius: 8px;
 }
 
 .close-button {
-  background-color: #1e3a8a; /* Dark blue */
+  background-color: #1e3a8a;
   color: white;
   border: none;
   padding: 10px 15px;
@@ -103,4 +104,75 @@
 
 .close-button:hover {
   background-color: #163366;
+}
+
+@media (max-width: 768px) {
+  .user-dashboard {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 10px;
+    align-items: center;
+  }
+
+  .sidebar h2 {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+
+  .sidebar ul li {
+    text-align: center;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .welcome-section h1 {
+    font-size: 20px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    padding: 5px;
+  }
+
+  .sidebar h2 {
+    font-size: 1.2rem;
+  }
+
+  .sidebar ul li a {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+
+  .logout-button, .info-button {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+
+  .content {
+    padding: 15px;
+  }
+
+  .welcome-section h1 {
+    font-size: 18px;
+  }
+
+  .welcome-section h3 {
+    font-size: 1rem;
+  }
+
+  .modal {
+    padding: 15px;
+  }
+
+  .close-button {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
 }

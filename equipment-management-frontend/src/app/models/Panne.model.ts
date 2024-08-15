@@ -1,7 +1,6 @@
-import { Equipment } from './equipment.model';
 
 export interface Panne {
-  id: number;  // Ensure id is always a number and never null
+  id: number;
   description: string;
   datePanne: Date;
   etatPanne: EtatPanne;

@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TicketService } from '../../Service/ticket.service';
 import { TicketDTOcreat, EtatTicket } from '../../DTO/TicketDTOcreat';
 import { PersonneService } from '../../Service/PersonneService';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-ticket',
@@ -19,7 +20,8 @@ export class CreateTicketComponent implements OnInit {
     private fb: FormBuilder,
     private ticketService: TicketService,
     private personneService: PersonneService,
-    private panneEquipmentService: PanneEquipmentService
+    private panneEquipmentService: PanneEquipmentService,
+    private router: Router
   ) {
     this.ticketForm = this.fb.group({
       description: ['', Validators.required],
@@ -59,7 +61,7 @@ export class CreateTicketComponent implements OnInit {
       const formValue = this.ticketForm.value;
 
       const ticketData: TicketDTOcreat = {
-        id: 0, // Backend will handle ID generation
+        id: 0,
         description: formValue.description,
         etatTicket: formValue.etatTicket,
         user: {
@@ -74,6 +76,7 @@ export class CreateTicketComponent implements OnInit {
       this.ticketService.createTicket(ticketData).subscribe(
         response => {
           console.log('Ticket created successfully:', response);
+          this.router.navigate(['user/my-tickets']);
           // Handle success, maybe redirect or show a message
         },
         error => {

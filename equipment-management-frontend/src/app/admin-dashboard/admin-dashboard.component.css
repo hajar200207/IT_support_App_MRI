@@ -1,6 +1,6 @@
-/* admin-dashboard.component.css */
 .admin-dashboard {
   display: flex;
+  flex-direction: column;
 }
 
 .sidebar {
@@ -45,8 +45,10 @@
   padding: 20px;
   background-color: #f9f9f9;
 }
-/* admin-dashboard.component.css */
-.logout-button {
+
+.logout-button,
+.info-button,
+.close-button {
   display: block;
   width: 100%;
   padding: 10px;
@@ -60,22 +62,8 @@
   transition: background-color 0.3s ease;
 }
 
-.logout-button:hover {
-  background-color: #fbbf24;
-}
-/* admin-dashboard.component.css */
 .info-button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
   background-color: #3490dc;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .info-button:hover {
@@ -103,24 +91,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.close-button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-top: 20px;
-  background-color: #fbbf24;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.close-button:hover {
-  background-color: #fbbf24;
-}
-/* Welcome Section Styles */
 .welcome-section {
   border: 2px solid #2563eb;
   border-radius: 10px;
@@ -137,6 +107,7 @@
 .stats-container {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .stat-card {
@@ -146,6 +117,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   width: 200px;
+  margin: 10px;
 }
 
 .stat-card h3 {
@@ -159,32 +131,49 @@
   color: #1e3a8a;
 }
 
-/* Modal Styles */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@media (min-width: 768px) {
+  .admin-dashboard {
+    flex-direction: row;
+  }
+
+  .sidebar {
+    height: auto;
+  }
+
+  .content {
+    flex-grow: 1;
+    padding: 40px;
+  }
 }
 
-.modal {
-  background: white;
-  padding: 20px;
-  border-radius: 5px;
-  max-width: 500px;
-  width: 100%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+@media (max-width: 767px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+
+  .sidebar ul li {
+    text-align: center;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .stat-card {
+    width: calc(50% - 20px);
+    margin: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-card {
+    width: calc(100% - 20px);
+    margin: 10px 0;
+  }
 }
 
 
-
-
-/* Animation */
 @keyframes fadeIn {
   from {
     opacity: 0;

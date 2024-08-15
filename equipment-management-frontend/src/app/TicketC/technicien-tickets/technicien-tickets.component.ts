@@ -39,12 +39,10 @@ export class TechnicienTicketsComponent implements OnInit {
     const target = event.target as HTMLSelectElement;
     const newStatus = target.value;
 
-    // Ensure user is not null and id is defined
     if (this.user && this.user.id !== undefined) {
       this.ticketService.updateTicketStatus(this.user.id, ticketId, newStatus).subscribe(
         (response: string) => {
           console.log(response);
-          // Reload the user's tickets to see the changes
           this.loadUserTickets(this.user!.id!);
         },
         (error) => {

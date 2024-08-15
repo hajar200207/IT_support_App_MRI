@@ -1,25 +1,25 @@
-/* General Container Styling */
+
 .container {
   padding: 20px;
-  background-color: #fbbf24; /* Background color */
+  background-color: #fbbf24;
   border-radius: 8px;
 }
 
-/* Header Styling */
+
 h2 {
-  color: #1e3a8a; /* Header color */
+  color: #1e3a8a;
   font-size: 24px;
   margin-bottom: 20px;
 }
 
-/* Table Styling */
+
 .table {
   width: 100%;
   border-collapse: collapse;
 }
 
 .table thead {
-  background-color: #1e3a8a; /* Header background color */
+  background-color: #1e3a8a;
   color: #fbbf24;
 }
 
@@ -30,14 +30,14 @@ h2 {
 }
 
 .table tbody tr:nth-child(even) {
-  background-color: #fbbf24; /* Alternating row color */
+  background-color: #fbbf24;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-  background-color: #fbbf24; /* Odd row background color */
+  background-color: #fbbf24;
 }
 
-/* Responsive Styling */
+
 @media (max-width: 768px) {
   .table {
     font-size: 14px;
